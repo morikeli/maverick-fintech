@@ -13,3 +13,6 @@ const String kLongLastNameError = 'Last name provided is too long!';
 const String kShortOTPCodeError = 'OTP code provided is short!';
 const String kOTPCodeError = 'Please enter a valid OTP code!';
 const String kOTPCodeVerificationError = 'Verification failed!';
+const String kPhoneNumberNullError = 'Please enter your phone number!';
+const String kShortPhoneNumberError = 'Mobile number provided is too short!';
+const String kLongPhoneNumberError = 'Mobile number provided is too long!';
