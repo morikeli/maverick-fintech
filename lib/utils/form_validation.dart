@@ -25,11 +25,9 @@ class FormValidation {
 
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return kLastNameNullError;
-    } else if (value.length < 2) {
-      return kShortLastNameError;
-    } else if (value.length > 15) {
-      return kLongLastNameError;
+      return kemailNullError;
+    } else if (!emailValidatorRegex.hasMatch(value)) {
+      return kInvalidEmailError;
     }
 
     return null;
