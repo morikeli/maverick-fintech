@@ -1,0 +1,15 @@
+final RegExp emailValidatorRegex = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+const String kemailNullError = 'Please enter your email address!';
+const String kInvalidEmailError = 'Please enter a valid email address!';
+const String kPasswordNullError = 'Please enter your password!';
+const String kShortPasswordError = 'Password is too short!';
+const String kPasswordMatchError = "Passwords didn't match!";
+const String kFirstNameNullError = 'Please enter a valid first name!';
+const String kShortFirstNameError = 'First name provided is too short!';
+const String kLongFirstNameError = 'First name provided is too long!';
+const String kLastNameNullError = 'Please enter a valid surname!';
+const String kShortLastNameError = 'Last name provided is too short!';
+const String kLongLastNameError = 'Last name provided is too long!';
+const String kShortOTPCodeError = 'OTP code provided is short!';
+const String kOTPCodeError = 'Please enter a valid OTP code!';
+const String kOTPCodeVerificationError = 'Verification failed!';
