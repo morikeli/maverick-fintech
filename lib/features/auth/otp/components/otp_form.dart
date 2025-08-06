@@ -78,8 +78,7 @@ class _OtpFormState extends State<OtpForm> {
       ),
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
-        FormValidation.validateOTPCode(value);
-        return null;
+        return FormValidation.validateOTPCode(value);
       },
     );
   }
@@ -102,8 +101,7 @@ class _OtpFormState extends State<OtpForm> {
         );
       },
       validator: (value) {
-        FormValidation.validateSelectedCountry(value);
-        return null;
+        return FormValidation.validateSelectedCountry(value);
       },
       decoration: InputDecoration(
         hintText: "Select country",

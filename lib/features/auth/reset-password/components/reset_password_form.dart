@@ -76,8 +76,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
       icon: Icons.lock_outline,
       obscureText: true,
       validator: (value) {
-        FormValidation.validatePassword(value, _newPasswordController.text);
-        return null;
+        return FormValidation.validatePassword(value, _newPasswordController.text);
       }
     );
   }
@@ -89,8 +88,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
       icon: Icons.lock_outline,
       obscureText: true,
       validator: (value) {
-        FormValidation.validatePassword(value, _newPasswordController.text);
-        return null;
+        return FormValidation.validatePassword(value, _newPasswordController.text);
       }
     );
   }
@@ -102,8 +100,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
       icon: Icons.lock_reset,
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
-        FormValidation.validatePasswordResetCode(value);
-        return null;
+        return FormValidation.validatePasswordResetCode(value);
       },
     );
   }

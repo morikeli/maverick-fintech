@@ -114,8 +114,7 @@ class _LoginFormState extends State<LoginForm> {
       icon: Icons.lock_outline,
       obscureText: true,
       validator: (value) {
-        FormValidation.validatePassword(value, widget.passwordController.text);
-        return null;
+        return FormValidation.validatePassword(value, widget.passwordController.text);
       }
     );
   }
@@ -127,8 +126,7 @@ class _LoginFormState extends State<LoginForm> {
       icon: Icons.email_outlined,
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
-        FormValidation.validateEmail(value);
-        return null;
+        return FormValidation.validateEmail(value);
       },
     );
   }

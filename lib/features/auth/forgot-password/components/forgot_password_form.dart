@@ -58,8 +58,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
       icon: Icons.email_outlined,
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
-        FormValidation.validateEmail(value);
-        return null;
+        return FormValidation.validateEmail(value);
       },
     );
   }

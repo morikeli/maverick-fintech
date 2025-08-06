@@ -110,8 +110,7 @@ class _SignupFormState extends State<SignupForm> {
       icon: Icons.lock_outline,
       obscureText: true,
       validator: (value) {
-        FormValidation.validatePassword(value, _passwordController.text);
-        return null;
+        return FormValidation.validatePassword(value, _passwordController.text);
       }
     );
   }
@@ -123,8 +122,7 @@ class _SignupFormState extends State<SignupForm> {
       icon: Icons.email_outlined,
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
-       FormValidation.validateEmail(value);
-        return null;
+       return FormValidation.validateEmail(value);
       },
     );
   }
@@ -136,8 +134,7 @@ class _SignupFormState extends State<SignupForm> {
       icon: Icons.person_outline,
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
-        FormValidation.validateLastName(value);
-        return null;
+        return FormValidation.validateLastName(value);
       },
     );
   }
