@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/dashboard_controller.dart';
-import 'components/home_component.dart';
+import 'widgets/home_screen_body_widget.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HomeScreenBodyComponent(controller: controller),
+      body: HomeScreenBodyWidget(controller: controller),
     );
   }
 }
