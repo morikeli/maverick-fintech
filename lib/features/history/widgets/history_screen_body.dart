@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
+import '../../../controllers/history_controller.dart';
+import 'filter_transactions.dart';
+import 'transaction_records.dart';
+
+class HistoryScreenBodyWidget extends StatelessWidget {
+  const HistoryScreenBodyWidget({
+    super.key,
+    required this.controller,
+    required this.dateFormatter,
+  });
+
+  final HistoryController controller;
+  final DateFormat dateFormatter;
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      return Column(
+        children: [
+          // 1. Filter
+          FilterTransactionsWidget(
+            controller: controller,
+            dateFormatter: dateFormatter,
+          ),
+          Divider(),
+          // 2. Section for displaying total sent, and received
+          basicAnalytics(),
+          Divider(),
+          // 3. All transaction records
+          TransactionRecordsWidget(controller: controller),
+        ],
+      );
+    });
+  }
+
+  Padding basicAnalytics() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Column(
+            children: [
+              Text("Total Sent"),
+              Text("Kshs ${controller.totalSent.value.toStringAsFixed(2)}"),
+            ],
+          ),
+          Column(
+            children: [
+              Text("Total Received"),
+              Text("Kshs ${controller.totalReceived.value.toStringAsFixed(2)}"),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
