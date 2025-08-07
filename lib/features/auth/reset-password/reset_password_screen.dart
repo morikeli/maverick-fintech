@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components/reset_password_body.dart';
+import 'widgets/reset_password_body.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   static String routeName = '/reset-password';

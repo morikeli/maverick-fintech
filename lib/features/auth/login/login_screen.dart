@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'components/login_form.dart';
+import 'widgets/login_form.dart';
 import '../../../core/theme/colors.dart';
 
 class LoginScreen extends StatefulWidget {
