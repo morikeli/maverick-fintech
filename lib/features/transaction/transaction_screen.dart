@@ -5,6 +5,7 @@ import '../../controllers/transaction_controller.dart';
 import 'widgets/transaction_screen_body.dart';
 
 class TransactionScreen extends StatelessWidget {
+  static String routeName = '/send-money';
   TransactionScreen({super.key});
   final controller = Get.put(TransactionController());
 
