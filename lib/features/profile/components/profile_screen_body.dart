@@ -82,7 +82,7 @@ class ProfileScreenBody extends StatelessWidget {
           // 8. light/dark mode toggle switch
           ListTile(
             leading: Icon(isDark ? BootstrapIcons.moon : BootstrapIcons.sun),
-            title: const Text('Light/Dark Mode'),
+            title: Text(isDark ? 'Light mode' : 'Dark mode'),
             trailing: Transform.scale(
               scale: .8,
               child: Switch(
