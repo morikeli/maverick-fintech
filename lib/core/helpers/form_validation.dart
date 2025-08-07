@@ -1,4 +1,4 @@
-import '../core/constants/errors.dart';
+import '../constants/errors.dart';
 
 class FormValidation {
   static String? validateFirstName(String? value) {
