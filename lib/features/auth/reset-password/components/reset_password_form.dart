@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:maverick_app/utils/form_validation.dart';
 
+import '../../../../core/helpers/form_validation.dart';
 import '../../../../widgets/custom_text_form_field.dart';
 import '../../../../widgets/reset_password_dialog.dart';
 

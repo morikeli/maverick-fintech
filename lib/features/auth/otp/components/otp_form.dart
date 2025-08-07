@@ -1,7 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../utils/form_validation.dart';
+import '../../../../core/helpers/form_validation.dart';
 import '../../login/login_screen.dart';
 
 class OtpForm extends StatefulWidget {

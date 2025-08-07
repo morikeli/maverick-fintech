@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../widgets/custom_text_form_field.dart';
-import '../../../../utils/form_validation.dart';
-import '../../otp/otp_screen.dart';
+import '../../../../core/helpers/form_validation.dart';
+import '../../../../widgets/homescreen.dart';
 
 class LoginForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -69,7 +69,7 @@ class _LoginFormState extends State<LoginForm> {
             widget.formKey.currentState!.save();
             widget.emailController.clear();
             widget.passwordController.clear();
-            Navigator.pushNamed(context, OtpScreen.routeName);
+            Navigator.pushNamed(context, HomeScreen.routeName);
           }
         },
         child: const Text(

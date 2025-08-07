@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/form_validation.dart';
+import '../../../../core/helpers/form_validation.dart';
 import '../../../../widgets/toastification.dart';
 import '../../../../widgets/custom_text_form_field.dart';
 import '../../login/login_screen.dart';
@@ -63,8 +63,7 @@ class _SignupFormState extends State<SignupForm> {
           if (_formKey.currentState!.validate()) {
             if (!_hasReadTermsAndConditions) {
               // show toast notification
-              AppToastsWidget.dangerToastification(context, 'Please accept the terms & conditions!');
-              return;
+              return AppToastsWidget.dangerToastification(context, 'Please accept the terms & conditions!');
             }
             _formKey.currentState!.save();
             _firstNameController.clear();
