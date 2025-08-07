@@ -6,19 +6,19 @@ class MaverickAppTextTheme {
   MaverickAppTextTheme._();
 
   static TextTheme lightTextTheme = TextTheme(
-    titleLarge: const TextStyle().copyWith(
+    titleLarge: const TextStyle(
       color: kTextDarkColor,
-      fontSize: 30.0,
+      fontSize: 32.0,
       fontFamily: 'WorkSans',
       fontWeight: FontWeight.bold,
     ),
-    titleMedium: const TextStyle().copyWith(
+    titleMedium: const TextStyle(
       color: kTextDarkColor,
-      fontSize: 20.0,
+      fontSize: 24.0,
       fontFamily: 'WorkSans',
       fontWeight: FontWeight.bold,
     ),
-    titleSmall: const TextStyle().copyWith(
+    titleSmall: const TextStyle(
       color: kTextSecondaryColor,
       fontSize: 16.0,
       fontFamily: 'WorkSans',
@@ -26,35 +26,35 @@ class MaverickAppTextTheme {
     ),
 
     // body text
-    bodyLarge: const TextStyle().copyWith(
+    bodyLarge: const TextStyle(
       color: kTextDarkColor,
       fontSize: 16.0,
       fontFamily: 'WorkSans',
       fontWeight: FontWeight.w600,
     ),
-    bodyMedium: const TextStyle().copyWith(
+    bodyMedium: const TextStyle(
       color: kTextDarkColor,
       fontSize: 14.0,
       fontFamily: 'WorkSans',
     ),
-    bodySmall: const TextStyle().copyWith(
+    bodySmall: const TextStyle(
       color: kTextSecondaryColor,
       fontSize: 14.0,
       fontFamily: 'WorkSans',
     ),
 
     // label text
-    labelLarge: const TextStyle().copyWith(
+    labelLarge: const TextStyle(
       color: kTextDarkColor,
       fontSize: 14.0,
       fontFamily: 'WorkSans',
     ),
-    labelMedium: const TextStyle().copyWith(
+    labelMedium: const TextStyle(
       color: kTextDarkColor,
       fontSize: 13.0,
       fontFamily: 'WorkSans',
     ),
-    labelSmall: const TextStyle().copyWith(
+    labelSmall: const TextStyle(
       color: kTextSecondaryColor,
       fontSize: 12.5,
       fontFamily: 'WorkSans',
@@ -63,54 +63,55 @@ class MaverickAppTextTheme {
 
   // Dark theme text
   static TextTheme darkTextTheme = TextTheme(
-    titleLarge: const TextStyle().copyWith(
+    titleLarge: const TextStyle(
       color: kTextLightColor,
-      fontSize: 20.0,
+      fontSize: 32.0,
       fontFamily: 'WorkSans',
       fontWeight: FontWeight.bold,
     ),
-    titleMedium: const TextStyle().copyWith(
+    titleMedium: const TextStyle(
       color: kTextLightColor,
-      fontSize: 20.0,
+      fontSize: 24.0,
       fontFamily: 'WorkSans',
       fontWeight: FontWeight.bold,
     ),
-    titleSmall: const TextStyle().copyWith(
+    titleSmall: const TextStyle(
       color: kTextSecondaryColor,
-      fontSize: 16.0,
+      fontSize: 14.0,
       fontFamily: 'WorkSans',
     ),
 
     // body text
-    bodyLarge: const TextStyle().copyWith(
+    bodyLarge: const TextStyle(
       color: kTextLightColor,
-      fontSize: 16.0,
+      // fontSize: 20.0,
       fontFamily: 'WorkSans',
       fontWeight: FontWeight.w600,
     ),
-    bodyMedium: const TextStyle().copyWith(
+    bodyMedium: const TextStyle(
       color: kTextLightColor,
-      fontSize: 14.0,
+      // fontSize: 14.0,
       fontFamily: 'WorkSans',
+      fontWeight: FontWeight.w500,
     ),
-    bodySmall: const TextStyle().copyWith(
+    bodySmall: const TextStyle(
       color: kTextSecondaryColor,
       fontSize: 14.0,
       fontFamily: 'WorkSans',
     ),
 
     // label text
-    labelLarge: const TextStyle().copyWith(
-      color: kTextDarkColor,
+    labelLarge: const TextStyle(
+      color: kTextSecondaryColor,
       fontSize: 14.0,
       fontFamily: 'WorkSans',
     ),
-    labelMedium: const TextStyle().copyWith(
-      color: kTextDarkColor,
+    labelMedium: const TextStyle(
+      color: kTextSecondaryColor,
       fontSize: 13.0,
       fontFamily: 'WorkSans',
     ),
-    labelSmall: const TextStyle().copyWith(
+    labelSmall: const TextStyle(
       color: kTextSecondaryColor,
       fontSize: 12.5,
       fontFamily: 'WorkSans',
