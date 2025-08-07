@@ -17,10 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int screenIndex = 0;
   final List<Widget> screens = [
     Home(),
-    TransactionScreen(),
     HistoryScreen(),
     ProfileScreen(),
-    // ProfileScreen(),
   ];
 
   void moveToSelectedScreen(int index) {
