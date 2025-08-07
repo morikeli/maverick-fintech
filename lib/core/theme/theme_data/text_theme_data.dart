@@ -16,6 +16,11 @@ class MaverickAppTextTheme {
     bodyMedium: const TextStyle().copyWith(color: kTextDarkColor, fontSize: 14.0),
     bodySmall: const TextStyle().copyWith(color: kTextSecondaryColor, fontSize: 14.0),
 
+    // label text
+    labelLarge: const TextStyle().copyWith(color: kTextDarkColor, fontSize: 14.0),
+    labelMedium: const TextStyle().copyWith(color: kTextDarkColor, fontSize: 13.0),
+    labelSmall: const TextStyle().copyWith(color: kTextSecondaryColor, fontSize: 12.5),
+
   );
 
   // Dark theme text
@@ -28,6 +33,11 @@ class MaverickAppTextTheme {
     bodyLarge: const TextStyle().copyWith(color: kTextLightColor, fontSize: 16.0),
     bodyMedium: const TextStyle().copyWith(color: kTextLightColor, fontSize: 14.0),
     bodySmall: const TextStyle().copyWith(color: kTextSecondaryColor, fontSize: 14.0),
+
+    // label text
+    labelLarge: const TextStyle().copyWith(color: kTextDarkColor, fontSize: 14.0),
+    labelMedium: const TextStyle().copyWith(color: kTextDarkColor, fontSize: 13.0),
+    labelSmall: const TextStyle().copyWith(color: kTextSecondaryColor, fontSize: 12.5),
 
   );
 }
