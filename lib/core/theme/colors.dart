@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+const Color kAppBarColor = Color(0xFF004D40);
 const Color kPrimaryColor = Color(0xFF004D40);
 const Color kSecondaryColor = Color(0xFF9E9E9E);
 const Color kScaffoldBgLightColor = Color(0xFFFFFFFF);
@@ -19,3 +20,6 @@ const Color kDangerColor = Color(0xFFC21407);
 const Color kSuccessColor = Color(0xFF05332B);
 const Color kWarningColor = Color(0xFFD8D507);
 const Color kInfoColor = Color(0xFF3593E0);
+const kNotificationBadgeColor = Color(0xFFE41304);
+const kRecievedTransactionColor = Color(0xFF0DE718);
+const kSentTransactionColor = Color(0xFFF03629);
