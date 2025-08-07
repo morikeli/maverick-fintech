@@ -28,7 +28,7 @@ class CustomBottomNavBar extends StatelessWidget {
       textStyle: Theme.of(context).textTheme.labelSmall,
       tabs: [
         GButton(
-          icon: activeTab == 0 ? BootstrapIcons.house_fill : BootstrapIcons.house,
+          icon: activeTab == 0 ? BootstrapIcons.grid_1x2_fill : BootstrapIcons.grid_1x2,
           text: 'Home',
         ),
         GButton(
