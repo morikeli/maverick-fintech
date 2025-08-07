@@ -8,6 +8,7 @@ import 'features/auth/otp/otp_screen.dart';
 import 'features/auth/reset-password/reset_password_screen.dart';
 import 'features/auth/signup/signup_screen.dart';
 import 'features/profile/profile_screen.dart';
+import 'features/transaction/transaction_screen.dart';
 
 final Map<String, WidgetBuilder> routes = {
   OnboardingScreen.routeName: (context) => const OnboardingScreen(),
@@ -18,4 +19,5 @@ final Map<String, WidgetBuilder> routes = {
   OtpScreen.routeName: (context) => const OtpScreen(),
   HomeScreen.routeName: (context) => const HomeScreen(),
   ProfileScreen.routeName: (context) => ProfileScreen(),
+  TransactionScreen.routeName: (context) => TransactionScreen(),
 };
