@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../../controllers/history_controller.dart';
 import 'filter_transactions.dart';
-import 'transaction_records.dart';
+import 'transaction_history.dart';
 
 class HistoryScreenBodyWidget extends StatelessWidget {
   const HistoryScreenBodyWidget({
@@ -30,8 +30,8 @@ class HistoryScreenBodyWidget extends StatelessWidget {
           // 2. Section for displaying total sent, and received
           basicAnalytics(),
           Divider(),
-          // 3. All transaction records
-          TransactionRecordsWidget(controller: controller),
+          // 3. All transaction made
+          TransactionHistoryWidget(controller: controller),
         ],
       );
     });
