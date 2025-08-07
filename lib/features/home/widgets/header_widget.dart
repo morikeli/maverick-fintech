@@ -37,13 +37,26 @@ class HeaderWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          'Welcome back!',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            color: kTextLightColor,
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Welcome back!',
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                color: kTextLightColor,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'Hello, testuser',
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                color: kTextSecondaryColor,
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
 
         Center(
