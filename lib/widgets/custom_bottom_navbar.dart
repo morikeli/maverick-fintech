@@ -32,11 +32,6 @@ class CustomBottomNavBar extends StatelessWidget {
           text: 'Home',
         ),
         GButton(
-          icon: BootstrapIcons.cash_coin,
-          text: 'Send money',
-          textColor: kTextLightColor,
-        ),
-        GButton(
           icon: BootstrapIcons.list_ul,
           text: 'Transactions',
           textColor: kTextLightColor,
