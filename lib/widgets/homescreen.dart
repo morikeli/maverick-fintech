@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:maverick_app/features/history/history_screen.dart';
-import 'package:maverick_app/features/profile/profile_screen.dart';
-import 'package:maverick_app/features/transaction/transaction_screen.dart';
+
+import '../features/history/history_screen.dart';
+import '../features/profile/profile_screen.dart';
 import '../features/home/home.dart';
 import 'custom_bottom_navbar.dart';
 
