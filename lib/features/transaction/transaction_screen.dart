@@ -16,7 +16,7 @@ class TransactionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: sharedAppBar(context, 'Send money'),
+      appBar: sharedAppBar(context, 'Send money', true),
       body: TransactionScreenBodyWidget(
         recipientController: recipientController,
         selectedCurrency: selectedCurrency,

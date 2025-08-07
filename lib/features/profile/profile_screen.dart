@@ -14,7 +14,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: sharedAppBar(context, 'Profile'),
+      appBar: sharedAppBar(context, 'Profile', false),
       body: ProfileScreenBody(themeController: themeController),
     );
   }

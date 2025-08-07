@@ -2,8 +2,8 @@ import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:maverick_app/core/theme/colors.dart';
 
-AppBar sharedAppBar(BuildContext context, String appBarTitle) => AppBar(
-  automaticallyImplyLeading: false,
+AppBar sharedAppBar(BuildContext context, String appBarTitle, bool showPreviousScreenBtn) => AppBar(
+  automaticallyImplyLeading: showPreviousScreenBtn, // show btn to navigate to previous screen
   backgroundColor: kAppBarColor,
   centerTitle: true,
   title: Text(appBarTitle, style: Theme.of(context).textTheme.titleMedium,),
@@ -31,3 +31,5 @@ AppBar sharedAppBar(BuildContext context, String appBarTitle) => AppBar(
     ),
   ],
 );
+
+
