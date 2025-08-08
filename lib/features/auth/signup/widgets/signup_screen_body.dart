@@ -1,33 +1,46 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../../controllers/auth_controller.dart';
+import '../../../../widgets/loading_widget.dart';
 import 'signup_form.dart';
 
 class SignupScreenBody extends StatelessWidget {
-  const SignupScreenBody({super.key});
+  SignupScreenBody({super.key});
+
+  final AuthController _authController = Get.put(AuthController());
+
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SizedBox(
-        width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: ListView(
-            children: [
-              signupScreenTitle(context),
-              const SizedBox(height: 8.0),
-              signupScreenSubTitle(context),
-              SizedBox(height: 16.0),
-              const SignupForm(),
-              SizedBox(height: 24.0),
+    return Obx(() {
+      if (_authController.isLoading.value) {
+        return Center(child: LoadingWidget.newtonCradleMedium());
+      }
 
-              // if user has an account, redirect them to login screen when they tap the "Login" text
-              loginScreenRedirectLink(context),
-            ],
+        return SafeArea(
+          child: SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: ListView(
+                children: [
+                  signupScreenTitle(context),
+                  const SizedBox(height: 8.0),
+                  signupScreenSubTitle(context),
+                  SizedBox(height: 16.0),
+                  SignupForm(authController: _authController),
+                  SizedBox(height: 24.0),
+
+                  // if user has an account, redirect them to login screen when they tap the "Login" text
+                  loginScreenRedirectLink(context),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      }
     );
   }
 
