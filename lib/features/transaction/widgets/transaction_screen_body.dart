@@ -83,7 +83,7 @@ class _TransactionScreenBodyWidgetState
                   widget.controller.statusMessage.value!.contains('Failed')) {
                 return AppToastsWidget.dangerToastification(
                   context,
-                  "Transaction failed. Please try again.",
+                  widget.controller.statusMessage.value ?? "Insufficient balance!",
                 );
               }
 
