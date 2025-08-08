@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import '../models/transaction_model.dart';
 import '../services/transaction_service.dart';
@@ -8,7 +10,9 @@ class DashboardController extends GetxController {
   RxBool isLoading = false.obs;
   RxDouble walletBalance = 0.0.obs;
   RxList<TransactionModel> recentTransactions = <TransactionModel>[].obs;
+  RxString userName = ''.obs;
   RxString selectedCurrency = 'Kshs'.obs;
+  RxnString errorMessage = RxnString();
 
   @override
   void onInit() {
