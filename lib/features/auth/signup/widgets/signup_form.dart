@@ -1,76 +1,97 @@
+import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../../controllers/auth_controller.dart';
 import '../../../../core/helpers/form_validation.dart';
 import '../../../../widgets/toastification.dart';
 import '../../../../widgets/custom_text_form_field.dart';
-import '../../login/login_screen.dart';
-
 
 class SignupForm extends StatefulWidget {
-  const SignupForm({
-    super.key,
-  });
+  final AuthController authController;
+  const SignupForm({super.key, required this.authController});
 
   @override
   State<SignupForm> createState() => _SignupFormState();
 }
 
 class _SignupFormState extends State<SignupForm> {
+  // final AuthController _authController = Get.put(AuthController());
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final List<String> formErrors = [];
-  bool _hasReadTermsAndConditions = false;
 
-  @override
-  void dispose() {
-    _firstNameController.dispose();
-    _lastNameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
+  // bool _hasReadTermsAndConditions = false;
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          firstNameTextField(),
-          const SizedBox(height: 20.0),
-          lastNameTextField(),
-          const SizedBox(height: 20.0),
-          emailTextField(),
-          const SizedBox(height: 20),
-          passwordTextField(),
-          SizedBox(height: 12.0),
-          termsAndConditionsCheckBox(),
-          const SizedBox(height: 20.0),
-          signupButton(context),
-        ],
-      ),
-    );
+    return Obx(() {
+      return Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            // firstNameTextField(),
+            // const SizedBox(height: 20.0),
+            // lastNameTextField(),
+            // const SizedBox(height: 20.0),
+            emailTextField(),
+            const SizedBox(height: 20),
+            // mobileNumberTextField(),
+            // const SizedBox(height: 20),
+            passwordTextField(),
+            const SizedBox(height: 20),
+            confirmPasswordTextField(),
+            SizedBox(height: 12.0),
+            termsAndConditionsCheckBox(),
+            const SizedBox(height: 20.0),
+            signupButton(context),
+          ],
+        ),
+      );
+    });
   }
 
   SizedBox signupButton(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {
-          if (_formKey.currentState!.validate()) {
-            if (!_hasReadTermsAndConditions) {
+        onPressed: () async {
+          final form = _formKey.currentState;
+          if (form != null && form.validate()) {
+            if (!widget.authController.hasReadTermsAndConditions.value) {
               // show toast notification
-              return AppToastsWidget.dangerToastification(context, 'Please accept the terms & conditions!');
+              return AppToastsWidget.dangerToastification(
+                context,
+                'Please accept the terms & conditions!',
+              );
             }
-            _formKey.currentState!.save();
-            _firstNameController.clear();
-            _lastNameController.clear();
-            _emailController.clear();
-            _passwordController.clear();
-            Navigator.popAndPushNamed(context, LoginScreen.routeName);
+
+            // authorize user
+            await widget.authController.signup(
+              _emailController.text.trim(),
+              _passwordController.text.trim(),
+            );
+
+            // clear text controllers if login is successful
+            if (widget.authController.user.value != null) {
+              form.save();
+              _firstNameController.clear();
+              _lastNameController.clear();
+              _emailController.clear();
+              _passwordController.clear();
+              Get.offAndToNamed('/login');
+              return AppToastsWidget.successToastification(
+                context,
+                widget.authController.errorMessage.value ?? 'Account created successfully!',
+              );
+            } else {
+              return AppToastsWidget.dangerToastification(
+                context,
+                widget.authController.errorMessage.value ?? 'Signup failed!',
+              );
+            }
           }
         },
         child: const Text(
@@ -85,20 +106,29 @@ class _SignupFormState extends State<SignupForm> {
     return Row(
       children: [
         Checkbox.adaptive(
-            value: _hasReadTermsAndConditions,
-            activeColor: Colors.teal.shade900,
-            onChanged: (value) {
-              setState(() {
-                _hasReadTermsAndConditions = value!;
-              });
-            }),
+          value: widget.authController.hasReadTermsAndConditions.value,
+          activeColor: Colors.teal.shade900,
+          onChanged: (value) {
+            widget.authController.hasReadTermsAndConditions.value = value ?? false;
+          },
+        ),
         Text(
           'Accept Terms and Conditions',
-          style: TextStyle(
-            color: Colors.teal.shade900,
-          ),
+          style: TextStyle(color: Colors.teal.shade900),
         ),
       ],
+    );
+  }
+
+  CustomTextFormField confirmPasswordTextField() {
+    return CustomTextFormField(
+      controller: _confirmPasswordController,
+      label: "Confirm Password",
+      icon: Icons.lock_outline,
+      obscureText: true,
+      validator: (value) {
+        return FormValidation.validatePassword(value, _passwordController.text);
+      },
     );
   }
 
@@ -110,7 +140,7 @@ class _SignupFormState extends State<SignupForm> {
       obscureText: true,
       validator: (value) {
         return FormValidation.validatePassword(value, _passwordController.text);
-      }
+      },
     );
   }
 
@@ -121,7 +151,20 @@ class _SignupFormState extends State<SignupForm> {
       icon: Icons.email_outlined,
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
-       return FormValidation.validateEmail(value);
+        return FormValidation.validateEmail(value);
+      },
+    );
+  }
+
+  CustomTextFormField mobileNumberTextField() {
+    return CustomTextFormField(
+      controller: _firstNameController,
+      label: "Mobile Number",
+      icon: BootstrapIcons.phone_flip,
+      keyboardType: TextInputType.number,
+      validator: (value) {
+        FormValidation.validateFirstName(value);
+        return null;
       },
     );
   }
