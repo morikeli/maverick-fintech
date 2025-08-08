@@ -17,30 +17,31 @@ class FilterTransactionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Filters", style: TextStyle(fontSize: 18)),
-          Wrap(
-            alignment: WrapAlignment.spaceBetween,
-            runSpacing: 8.0,  // space between rows
-            spacing: 8.0,    // space between items in a row
+    return Obx(() {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              transactionTypeDropdownButton(
-                context,
-              ), // transaction type: "sent", "received", default: "All"
-              Spacer(),
-
-              //pick start date to filter transactions
-              pickStartDate(context),
-              // pick end date to filter transactions
-              pickEndDate(context),
+              Text("Filters", style: TextStyle(fontSize: 18)),
+              Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                runSpacing: 8.0,  // space between rows
+                spacing: 8.0,    // space between items in a row
+                children: [
+                   // transaction type: "sent", "received", default: "All"
+                  transactionTypeDropdownButton(context),
+                  Spacer(),
+                  //pick start date to filter transactions
+                  pickStartDate(context),
+                  // pick end date to filter transactions
+                  pickEndDate(context),
+                ],
+              ),
             ],
           ),
-        ],
-      ),
+        );
+      }
     );
   }
 
