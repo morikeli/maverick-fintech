@@ -49,18 +49,32 @@ class TransactionScreenBodyWidget extends StatelessWidget {
       children: [
         Expanded(
           child: ElevatedButton(
-            onPressed: controller.isLoading.value
-                ? null
-                : () async {
-                    final to = recipientController.text;
-                    final amt = double.tryParse(amountController.text) ?? 0;
-                    await controller.sendMoney(to, amt, selectedCurrency.value);
+            onPressed: () async {
+              final to = widget.recipientController.text;
+              final amt = double.tryParse(widget.amountController.text) ?? 0;
+              await widget.controller.sendMoney(
+                to,
+                amt,
+                widget.selectedCurrency.value,
+              );
 
-                    AppToastsWidget.successToastification(
-                      context,
-                      controller.statusMessage.value!,
-                    );
-                  },
+              if (widget.controller.statusMessage.value == null ||
+                  widget.controller.statusMessage.value!.contains('Failed')) {
+                return AppToastsWidget.dangerToastification(
+                  context,
+                  "Transaction failed. Please try again.",
+                );
+              }
+
+              // clear controllers when the
+              widget.recipientController.clear();
+              widget.amountController.clear();
+
+              return AppToastsWidget.successToastification(
+                context,
+                widget.controller.statusMessage.value!,
+              );
+            },
             child: Text(
               "Send",
               style: Theme.of(
