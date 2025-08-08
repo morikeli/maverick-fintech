@@ -1,3 +1,4 @@
+import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:toastification/toastification.dart';
 
@@ -9,7 +10,7 @@ class AppToastsWidget {
   static void dangerToastification(BuildContext context, String notificationMsg) {
     toastification.show(
       context: context,
-      icon: Icon(Icons.error_outline, color: kIconLightColor),
+      icon: Icon(BootstrapIcons.exclamation_circle, color: kIconLightColor),
       title: Text(notificationMsg, style: TextStyle(color: kTextLightColor)),
       type: ToastificationType.error,
       style: ToastificationStyle.fillColored,
@@ -26,7 +27,7 @@ class AppToastsWidget {
   static void infoToastification(BuildContext context, String notificationMsg) {
     toastification.show(
       context: context,
-      icon: Icon(Icons.error_outline, color: kIconLightColor),
+      icon: Icon(BootstrapIcons.info_circle, color: kIconLightColor),
       title: Text(notificationMsg, style: TextStyle(color: kTextLightColor)),
       type: ToastificationType.info,
       style: ToastificationStyle.fillColored,
@@ -42,7 +43,7 @@ class AppToastsWidget {
   static void successToastification(BuildContext context, String notificationMsg) {
     toastification.show(
       context: context,
-      icon: Icon(Icons.error_outline, color: kIconLightColor),
+      icon: Icon(BootstrapIcons.check_circle, color: kIconLightColor),
       title: Text(notificationMsg, style: TextStyle(color: kTextLightColor)),
       type: ToastificationType.success,
       style: ToastificationStyle.fillColored,
@@ -57,7 +58,7 @@ class AppToastsWidget {
   static void warningToastification(BuildContext context, String notificationMsg) {
     toastification.show(
       context: context,
-      icon: Icon(Icons.error_outline, color: kIconLightColor),
+      icon: Icon(BootstrapIcons.exclamation_triangle, color: kIconLightColor),
       title: Text(notificationMsg, style: TextStyle(color: kTextLightColor)),
       type: ToastificationType.warning,
       style: ToastificationStyle.fillColored,
