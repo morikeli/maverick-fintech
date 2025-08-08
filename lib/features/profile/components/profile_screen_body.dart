@@ -106,6 +106,27 @@ class ProfileScreenBody extends StatelessWidget {
               ),
             ),
           ),
+
+          // Danger zone header
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Text(
+              'Danger zone',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontSize: 16.0,
+                color: kTextSecondaryColor,
+              ),
+            ),
+          ),
+          // 9. Logout button
+          ElevatedButton(
+            onPressed: () async => confirmLogout(),
+            style: ElevatedButton.styleFrom(backgroundColor: kDangerColor, padding: EdgeInsets.symmetric(horizontal: 12.0)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Icon(BootstrapIcons.door_open), Text('Logout')],
+            ),
+          ),
         ],
       );
     });
