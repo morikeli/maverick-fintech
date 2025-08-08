@@ -23,7 +23,10 @@ class FilterTransactionsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("Filters", style: TextStyle(fontSize: 18)),
-          Row(
+          Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            runSpacing: 8.0,  // space between rows
+            spacing: 8.0,    // space between items in a row
             children: [
               transactionTypeDropdownButton(
                 context,
