@@ -13,6 +13,7 @@ class DashboardController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    isLoading.value = true;
     fetchDashboardData();
     bindLiveTransactions();
   }
