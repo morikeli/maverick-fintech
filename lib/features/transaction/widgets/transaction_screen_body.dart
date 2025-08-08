@@ -6,9 +6,10 @@ import '../../../controllers/transaction_controller.dart';
 import '../../../core/helpers/form_validation.dart';
 import '../../../core/theme/colors.dart';
 import '../../../widgets/custom_text_form_field.dart';
+import '../../../widgets/loading_widget.dart';
 import '../../../widgets/toastification.dart';
 
-class TransactionScreenBodyWidget extends StatelessWidget {
+class TransactionScreenBodyWidget extends StatefulWidget {
   const TransactionScreenBodyWidget({
     super.key,
     required this.recipientController,
@@ -25,8 +26,26 @@ class TransactionScreenBodyWidget extends StatelessWidget {
   final TextEditingController amountController;
 
   @override
+  State<TransactionScreenBodyWidget> createState() =>
+      _TransactionScreenBodyWidgetState();
+}
+
+class _TransactionScreenBodyWidgetState
+    extends State<TransactionScreenBodyWidget> {
+  @override
+  void dispose() {
+    widget.recipientController.dispose();
+    widget.amountController.dispose();
+    widget.selectedCurrency.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Obx(() {
+      if (widget.controller.isLoading.value) {
+        return Center(child: LoadingWidget.newtonCradleMedium());
+      }
       return Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -35,7 +54,9 @@ class TransactionScreenBodyWidget extends StatelessWidget {
             SizedBox(height: 8.0),
             amountTextField(), // enter amount to send
             SizedBox(height: 8.0),
-            currencyDropdown(context), // dropdown to display multiple currencies
+            currencyDropdown(
+              context,
+            ), // dropdown to display multiple currencies
             SizedBox(height: 20.0),
             sendMoneyButton(context),
           ],
@@ -98,11 +119,11 @@ class TransactionScreenBodyWidget extends StatelessWidget {
             fontSize: 20.0,
           ),
           menuWidth: MediaQuery.of(context).size.width * .7,
-          value: selectedCurrency.value,
-          items: currencyOptions
+          value: widget.selectedCurrency.value,
+          items: widget.currencyOptions
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
               .toList(),
-          onChanged: (val) => selectedCurrency.value = val!,
+          onChanged: (val) => widget.selectedCurrency.value = val!,
         ),
       ),
     );
@@ -110,7 +131,7 @@ class TransactionScreenBodyWidget extends StatelessWidget {
 
   CustomTextFormField amountTextField() {
     return CustomTextFormField(
-      controller: amountController,
+      controller: widget.amountController,
       label: "Amount",
       icon: BootstrapIcons.coin,
       keyboardType: TextInputType.number,
@@ -128,12 +149,14 @@ class TransactionScreenBodyWidget extends StatelessWidget {
 
   CustomTextFormField emailOrMobileNumberTextField() {
     return CustomTextFormField(
-      controller: recipientController,
+      controller: widget.recipientController,
       label: "Recipient's email or mobile number",
       keyboardType: TextInputType.emailAddress,
       icon: Icons.upload,
       validator: (value) {
-        return FormValidation.validatePhoneNumber(recipientController.text);
+        return FormValidation.validatePhoneNumber(
+          widget.recipientController.text,
+        );
       },
     );
   }
