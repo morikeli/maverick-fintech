@@ -117,33 +117,13 @@ class ProfileScreenBody extends StatelessWidget {
       children: [
         // 1. Edit profile btn
         Expanded(
-          child: ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: kButtonDarkColor,
-              padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-            ),
-            child: Text('Edit profile'),
-          ),
+          child: ElevatedButton(onPressed: () {}, child: Text('Edit profile')),
         ),
         SizedBox(width: 12.0),
 
         // 2. Reset PIN btn
         Expanded(
-          child: ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: kButtonDarkColor,
-              padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-            ),
-            child: Text('Reset PIN'),
-          ),
+          child: ElevatedButton(onPressed: () {}, child: Text('Reset PIN')),
         ),
       ],
     );
