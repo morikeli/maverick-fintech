@@ -20,6 +20,7 @@ class _SignupFormState extends State<SignupForm> {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _mobileNumberController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -32,14 +33,14 @@ class _SignupFormState extends State<SignupForm> {
         key: _formKey,
         child: Column(
           children: [
-            // firstNameTextField(),
-            // const SizedBox(height: 20.0),
-            // lastNameTextField(),
-            // const SizedBox(height: 20.0),
+            firstNameTextField(),
+            const SizedBox(height: 20.0),
+            lastNameTextField(),
+            const SizedBox(height: 20.0),
             emailTextField(),
             const SizedBox(height: 20),
-            // mobileNumberTextField(),
-            // const SizedBox(height: 20),
+            mobileNumberTextField(),
+            const SizedBox(height: 20),
             passwordTextField(),
             const SizedBox(height: 20),
             confirmPasswordTextField(),
@@ -70,7 +71,10 @@ class _SignupFormState extends State<SignupForm> {
 
             // authorize user
             await widget.authController.signup(
+              _firstNameController.text.trim(),
+              _lastNameController.text.trim(),
               _emailController.text.trim(),
+              _mobileNumberController.text.trim(),
               _passwordController.text.trim(),
             );
 
@@ -80,6 +84,7 @@ class _SignupFormState extends State<SignupForm> {
               _firstNameController.clear();
               _lastNameController.clear();
               _emailController.clear();
+              _mobileNumberController.clear();
               _passwordController.clear();
               Get.offAndToNamed('/login');
               return AppToastsWidget.successToastification(
@@ -158,7 +163,7 @@ class _SignupFormState extends State<SignupForm> {
 
   CustomTextFormField mobileNumberTextField() {
     return CustomTextFormField(
-      controller: _firstNameController,
+      controller: _mobileNumberController,
       label: "Mobile Number",
       icon: BootstrapIcons.phone_flip,
       keyboardType: TextInputType.number,

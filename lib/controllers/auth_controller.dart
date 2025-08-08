@@ -29,10 +29,10 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> signup(String email, String password) async {
+  Future<void> signup(String firstName, String lastName, String email, String mobileNumber, String password) async {
     isLoading.value = true;
     try {
-      user.value = await _authService.signup(email, password);
+      user.value = await _authService.signup(firstName, lastName, email, mobileNumber, password);
     } on FirebaseAuthException catch(e) {
       errorMessage.value = e.message ?? "Couldn't create an account for you! Please try again later.";
       user.value = null;
