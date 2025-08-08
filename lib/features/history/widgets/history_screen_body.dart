@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../controllers/history_controller.dart';
+import '../../../core/helpers/currency_formatter.dart';
 import 'filter_transactions.dart';
 import 'transaction_history.dart';
 
@@ -28,7 +29,7 @@ class HistoryScreenBodyWidget extends StatelessWidget {
           ),
           Divider(),
           // 2. Section for displaying total sent, and received
-          basicAnalytics(),
+          basicAnalytics(context),
           Divider(),
           // 3. All transaction made
           TransactionHistoryWidget(controller: controller),
@@ -37,7 +38,7 @@ class HistoryScreenBodyWidget extends StatelessWidget {
     });
   }
 
-  Padding basicAnalytics() {
+  Padding basicAnalytics(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Row(
