@@ -2,12 +2,13 @@ import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controllers/auth_controller.dart';
 import '../../../controllers/theme_controller.dart';
 import '../../../core/theme/colors.dart';
 import 'custom_list_tile.dart';
 
 class ProfileScreenBody extends StatelessWidget {
-  const ProfileScreenBody({super.key, required this.themeController});
+  ProfileScreenBody({super.key, required this.themeController});
 
   final ThemeController themeController;
   final AuthController authController = Get.put(AuthController());
