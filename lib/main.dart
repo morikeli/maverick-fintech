@@ -9,7 +9,8 @@ import 'features/auth/login/login_screen.dart';
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const MaverickApp());
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(MaverickApp());
 
   // whenever your initialization is completed, remove the splash screen:
   FlutterNativeSplash.remove();
