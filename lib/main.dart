@@ -1,9 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get/get.dart';
+import 'package:maverick_app/controllers/theme_controller.dart';
 import 'package:maverick_app/routes.dart';
+import 'package:maverick_app/widgets/homescreen.dart';
+import 'package:toastification/toastification.dart';
 
+import 'core/helpers/firebase_options.dart';
 import 'core/theme/theme.dart';
-import 'features/auth/login/login_screen.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
