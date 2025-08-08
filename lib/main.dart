@@ -16,7 +16,8 @@ void main() {
 }
 
 class MaverickApp extends StatelessWidget {
-  const MaverickApp({super.key});
+  MaverickApp({super.key});
+  final ThemeController themeController = Get.put(ThemeController());
 
   // This widget is the root of your application.
   @override
