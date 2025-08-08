@@ -102,19 +102,19 @@ class _LoginFormState extends State<LoginForm> {
 
   CustomTextFormField passwordTextField() {
     return CustomTextFormField(
-      controller: widget.passwordController,
+      controller: passwordController,
       label: "Password",
       icon: Icons.lock_outline,
       obscureText: true,
       validator: (value) {
-        return FormValidation.validatePassword(value, widget.passwordController.text);
-      }
+        return FormValidation.validatePassword(value, passwordController.text);
+      },
     );
   }
 
   CustomTextFormField emailTextField() {
     return CustomTextFormField(
-      controller: widget.emailController,
+      controller: emailController,
       label: "Email",
       icon: Icons.email_outlined,
       keyboardType: TextInputType.emailAddress,
