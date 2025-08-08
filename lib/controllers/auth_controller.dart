@@ -52,4 +52,16 @@ class AuthController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  Future<void> logout() async {
+    isLoading.value = true;
+    try {
+      await _authService.logout();
+      user.value = null;
+    } catch (e) {
+      errorMessage.value = 'Logout failed';
+    } finally {
+      isLoading.value = false;
+    }
+  }
 }
