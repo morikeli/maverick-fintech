@@ -60,7 +60,7 @@ class FilterTransactionsWidget extends StatelessWidget {
           Text(
             "To: ${controller.endDate.value != null ? dateFormatter.format(controller.endDate.value!) : '---'}",
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              fontSize: 16.0,
+              fontSize: 12.0,
             ),
           ),
           Icon(Icons.arrow_drop_down, size: 32.0),
@@ -88,7 +88,7 @@ class FilterTransactionsWidget extends StatelessWidget {
           Text(
             "From: ${controller.startDate.value != null ? dateFormatter.format(controller.startDate.value!) : '---'}",
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              fontSize: 16.0,
+              fontSize: 12.0,
             ),
           ),
           Icon(Icons.arrow_drop_down, size: 32.0),
