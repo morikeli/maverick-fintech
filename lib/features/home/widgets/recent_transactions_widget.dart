@@ -1,9 +1,13 @@
+import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:maverick_app/core/theme/colors.dart';
 
 import '../../../controllers/dashboard_controller.dart';
-import 'package:maverick_app/models/transaction_model.dart';
+import '../../../models/transaction_model.dart';
+import '../../../core/helpers/currency_formatter.dart';
+import '../../../widgets/loading_widget.dart';
 
 class RecentTransactionsWidget extends StatelessWidget {
   const RecentTransactionsWidget({super.key, required this.controller});
