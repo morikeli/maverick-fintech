@@ -54,7 +54,7 @@ class RecentTransactionsWidget extends StatelessWidget {
       ),
       title: Text(
         txn.counterparty,
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 16.0),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14.0),
       ),
       subtitle: transactionType(txn, context),
       trailing: transactionDateAndAmount(txn, context),
@@ -63,9 +63,8 @@ class RecentTransactionsWidget extends StatelessWidget {
 
   Text transactionType(TransactionModel txn, BuildContext context) {
     return Text(
-      txn.type == "send"
-          ? "Sent"
-          : "Received", // show "Sent" for sent transactions and "Received" for received transactions
+      // show "Sent" for sent transactions and "Received" for received transactions
+      txn.type == "send" ? "Sent" : "Received",
       style: Theme.of(context).textTheme.labelSmall,
     );
   }
