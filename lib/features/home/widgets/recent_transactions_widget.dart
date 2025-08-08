@@ -12,16 +12,38 @@ class RecentTransactionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
+    return Obx(() {
+      final transactions = controller.recentTransactions;
+
+      if (controller.isLoading.value) {
+        return Center(child: LoadingWidget.newtonCradleMedium());
+      }
+
+      if (transactions.isEmpty) {
+        return Center(
+          child: ListView(
+            children: [
+              Icon(BootstrapIcons.receipt_cutoff, size: 30.0),
+              Text(
+                'No transaction records found',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ],
+          ),
+        );
+      }
+
+      return ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.symmetric(horizontal: 12.0),
-        itemCount: controller.recentTransactions.length,
+        itemCount: transactions.length,
         itemBuilder: (context, index) {
-          final txn = controller.recentTransactions[index];
+          final txn = transactions[index];
           return transactionRecordTile(txn, context);
         },
-      ),
-    );
+      );
+    });
   }
 
   ListTile transactionRecordTile(TransactionModel txn, BuildContext context) {
