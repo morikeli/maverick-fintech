@@ -46,14 +46,15 @@ class DashboardController extends GetxController {
   }
 
   void bindLiveTransactions() {
-    isLoading.value = true;
-    try {
-      recentTransactions.bindStream(
-        _transactionService.getRecentTransactions(),
-      );
-    } finally {
+    final stream = _transactionService.getRecentTransactions();
+
+    stream.listen((transactions) {
+      recentTransactions.assignAll(transactions);
+      isLoading.value = false; // only turn off loader when first data arrives
+    }, onError: (e) {
+      errorMessage.value = e.toString();
       isLoading.value = false;
-    }
+    });
   }
 
   void changeCurrency(String currency) async {
