@@ -10,6 +10,21 @@ class ProfileScreenBody extends StatelessWidget {
   const ProfileScreenBody({super.key, required this.themeController});
 
   final ThemeController themeController;
+  final AuthController authController = Get.put(AuthController());
+
+  void confirmLogout() {
+    Get.defaultDialog(
+      title: 'Logout',
+      middleText: 'Are you sure you want to logout?',
+      textConfirm: 'Logout',
+      textCancel: 'Cancel',
+      confirmTextColor: Colors.white,
+      onConfirm: () async {
+        await authController.logout();
+        Get.offAllNamed('/login');
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
