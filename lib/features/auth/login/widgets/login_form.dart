@@ -13,20 +13,9 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  late bool _rememberMe;
-
-  @override
-  void initState() {
-    super.initState();
-    _rememberMe = widget.rememberMe;
-  }
-
-  @override
-  void dispose() {
-    widget.emailController.dispose();
-    widget.passwordController.dispose();
-    super.dispose();
-  }
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
