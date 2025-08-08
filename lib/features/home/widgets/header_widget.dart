@@ -14,20 +14,26 @@ class HeaderWidget extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
       decoration: const BoxDecoration(color: kPrimaryColor),
-      child: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // 1. Screen title + Avatar
-            screenTitleAndAvatar(context),
-            const SizedBox(height: 12.0),
-            // 2. Wallet Balance
-            walletBalance(context),
-            SizedBox(height: 4.0),
-            // 3. Dropdown to select different currencies
-            currencyTypeDropdown(context),
-            const SizedBox(height: 4.0),
-          ],
+      child: RefreshIndicator.adaptive(
+        onRefresh: () => controller.fetchDashboardData(),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            physics: AlwaysScrollableScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // 1. Screen title + Avatar
+                screenTitleAndAvatar(context),
+                const SizedBox(height: 12.0),
+                // 2. Wallet Balance
+                walletBalance(context),
+                SizedBox(height: 4.0),
+                // 3. Dropdown to select different currencies
+                currencyTypeDropdown(context),
+                const SizedBox(height: 4.0),
+              ],
+            ),
+          ),
         ),
       ),
     );
