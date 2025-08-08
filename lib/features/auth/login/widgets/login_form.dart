@@ -42,12 +42,28 @@ class _LoginFormState extends State<LoginForm> {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {
-          if (widget.formKey.currentState!.validate()) {
-            widget.formKey.currentState!.save();
-            widget.emailController.clear();
-            widget.passwordController.clear();
-            Navigator.pushNamed(context, HomeScreen.routeName);
+        onPressed: () async {
+          final form = formKey.currentState;
+          if (form != null && form.validate()) {
+            await widget.authController.login(
+              emailController.text.trim(),
+              passwordController.text.trim(),
+            );
+
+            // clear text controllers if login is successful
+            // otherwise, display error toast
+            if (widget.authController.user.value != null) {
+              form.save();
+              emailController.clear();
+              passwordController.clear();
+              Get.offAndToNamed('/home');
+            } else {
+              return AppToastsWidget.dangerToastification(
+                context,
+                widget.authController.errorMessage.value ??
+                    "Couldn't log you in. Please try again later.",
+              );
+            }
           }
         },
         child: const Text(
