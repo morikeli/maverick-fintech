@@ -75,6 +75,7 @@ class RecentTransactionsWidget extends StatelessWidget {
 
   Column transactionDateAndAmount(TransactionModel txn, BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
           CurrencyHelper.formatTransactionAmount(
