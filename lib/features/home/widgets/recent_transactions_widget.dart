@@ -65,7 +65,7 @@ class RecentTransactionsWidget extends StatelessWidget {
           ),
         ),
         Text(
-          DateFormat('yyyy-MM-dd').format(txn.date),
+          DateFormat.yMMMd().format(txn.date),
           style: Theme.of(context).textTheme.labelSmall,
         ),
       ],
