@@ -5,20 +5,8 @@ import '../../../../core/helpers/form_validation.dart';
 import '../../../../widgets/homescreen.dart';
 
 class LoginForm extends StatefulWidget {
-  final GlobalKey<FormState> formKey;
-  final List<String> formErrors;
-  final TextEditingController emailController;
-  final TextEditingController passwordController;
-  final bool rememberMe;
-
-  const LoginForm({
-    super.key,
-    required this.formKey,
-    required this.formErrors,
-    required this.emailController,
-    required this.passwordController,
-    this.rememberMe = false,
-  });
+  final AuthController authController;
+  const LoginForm({super.key, required this.authController});
 
   @override
   State<LoginForm> createState() => _LoginFormState();
