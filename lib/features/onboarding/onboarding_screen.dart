@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../models/onboarding_model.dart';
+import '../../widgets/auth_gate.dart';
 
 class OnboardingScreen extends StatefulWidget {
   static String routeName = '/onboarding-screen';
@@ -126,8 +127,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         child: ElevatedButton(
           onPressed: () {
             if (isLastPage) {
-              // Navigate to login screen
-              Navigator.popAndPushNamed(context, '/login');
+              // Navigate to login screen if the user is unauthenticated
+              // otherwise navigate to homescreen
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const AuthGate()),
+              );
             } else {
               _controller.nextPage(
                 duration: Duration(milliseconds: 500),

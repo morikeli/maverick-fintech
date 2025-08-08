@@ -4,11 +4,11 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:maverick_app/controllers/theme_controller.dart';
 import 'package:maverick_app/routes.dart';
-import 'package:maverick_app/widgets/homescreen.dart';
 import 'package:toastification/toastification.dart';
 
 import 'core/helpers/firebase_options.dart';
 import 'core/theme/theme.dart';
+import 'widgets/auth_gate.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +35,7 @@ class MaverickApp extends StatelessWidget {
           darkTheme: MaverickAppTheme.darkTheme,
           theme: MaverickAppTheme.lightTheme,
           themeMode: themeController.themeMode.value,
-          home: HomeScreen(),
+          home: AuthGate(),
           initialRoute: '/onboarding-screen',
           routes: routes,
         ),
