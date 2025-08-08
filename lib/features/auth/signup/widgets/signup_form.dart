@@ -74,7 +74,7 @@ class _SignupFormState extends State<SignupForm> {
               _passwordController.text.trim(),
             );
 
-            // clear text controllers if login is successful
+            // clear text controllers if signup is successful
             if (widget.authController.user.value != null) {
               form.save();
               _firstNameController.clear();
