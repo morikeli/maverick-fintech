@@ -56,7 +56,26 @@ class DashboardController extends GetxController {
     }
   }
 
-  void changeCurrency(String currency) {
+  void changeCurrency(String currency) async {
     selectedCurrency.value = currency;
+
+    // convert Kshs. to the selected currency
+    if (currency == 'Kshs') {
+      await refreshWalletBalance();
+      walletBalance.value =  walletBalance.value;
+    } else if (currency == 'USD') {
+      await refreshWalletBalance();
+      walletBalance.value =  walletBalance.value / 129.04;
+    } else if (currency == 'GBP') {
+      await refreshWalletBalance();
+      walletBalance.value =  walletBalance.value / 173.54;
+    }
+
+  }
+
+  Future<void> refreshWalletBalance() async {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    walletBalance.value =
+        await _transactionService.getWalletBalance(uid: uid);
   }
 }
