@@ -5,8 +5,7 @@ import 'package:maverick_app/routes.dart';
 import 'core/theme/theme.dart';
 import 'features/auth/login/login_screen.dart';
 
-
-void main() {
+void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
