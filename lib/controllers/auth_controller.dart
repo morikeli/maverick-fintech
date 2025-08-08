@@ -9,6 +9,7 @@ class AuthController extends GetxController {
   Rxn<UserModel> user = Rxn<UserModel>();
   RxBool isLoading = false.obs;
   RxBool hasReadTermsAndConditions = false.obs;
+  RxBool rememberMe = false.obs;
   RxnString errorMessage = RxnString();
 
   Future<void> login(String email, String password) async {
