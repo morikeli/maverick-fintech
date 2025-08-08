@@ -41,16 +41,19 @@ class HistoryListTileWidget extends StatelessWidget {
 
   Text transactedAmount(BuildContext context) {
     return Text(
-        txn.type == "send"
-            ? "-${txn.currency} ${txn.amount.toStringAsFixed(2)}" // show '-' for sent transactions
-            : "+${txn.currency} ${txn.amount.toStringAsFixed(2)}", // show '+' for received transactions
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-          color: txn.type == "send"
-              ? kSentTransactionColor
-              : kRecievedTransactionColor,
-        ),
-        overflow: TextOverflow.visible,
-      );
+      CurrencyHelper.formatTransactionAmount(
+        amount: txn.amount,
+        currency: txn.currency,
+        isSent: txn.type == "send",
+        abbreviated: true, // apply formatting & abbreviation
+      ),
+      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+        color: txn.type == "send"
+            ? kSentTransactionColor
+            : kRecievedTransactionColor,
+      ),
+      overflow: TextOverflow.visible,
+    );
   }
 
   Text subtitleText(BuildContext context) {

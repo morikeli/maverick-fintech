@@ -52,9 +52,12 @@ class RecentTransactionsWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          txn.type == "send"
-              ? "-${txn.currency} ${txn.amount}" // show '-' for sent transactions
-              : "+${txn.currency} ${txn.amount}", // show '+' for received transactions
+          CurrencyHelper.formatTransactionAmount(
+            amount: txn.amount,
+            currency: txn.currency,
+            isSent: txn.type == "send",
+            abbreviated: true, // apply formatting & abbreviation
+          ),
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: txn.type == "send"
                 ? kSentTransactionColor
