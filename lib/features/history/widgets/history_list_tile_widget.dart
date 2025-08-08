@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/helpers/currency_formatter.dart';
 import '../../../core/theme/colors.dart';
 import '../../../models/transaction_model.dart';
 
 class HistoryListTileWidget extends StatelessWidget {
-  const HistoryListTileWidget({
-    super.key,
-    required this.txn,
-  });
+  const HistoryListTileWidget({super.key, required this.txn});
 
   final TransactionModel txn;
 
@@ -24,19 +22,16 @@ class HistoryListTileWidget extends StatelessWidget {
 
   Column trailingInfo(BuildContext context) {
     return Column(
-      children: [
-        transactedAmount(context),
-        transactionDate(context),
-      ],
+      children: [transactedAmount(context), transactionDate(context)],
     );
   }
 
   Text transactionDate(BuildContext context) {
     return Text(
-        DateFormat.yMMMd().format(txn.date),
-        style: Theme.of(context).textTheme.labelSmall,
-        overflow: TextOverflow.visible,
-      );
+      DateFormat.yMMMd().format(txn.date),
+      style: Theme.of(context).textTheme.labelSmall,
+      overflow: TextOverflow.visible,
+    );
   }
 
   Text transactedAmount(BuildContext context) {
