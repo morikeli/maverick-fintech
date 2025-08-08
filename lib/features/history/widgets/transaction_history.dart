@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../controllers/history_controller.dart';
 import 'history_list_tile_widget.dart';
@@ -10,14 +11,22 @@ class TransactionHistoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: controller.filteredTransactions.length,
-        itemBuilder: (context, index) {
-          final txn = controller.filteredTransactions[index];
-          return HistoryListTileWidget(txn: txn);
-        },
-      ),
-    );
+    return Obx(() {
+      return Expanded(
+        child: ListView.builder(
+          itemCount: controller.filteredTransactions.length,
+          itemBuilder: (context, index) {
+            // if filters are applied show filtered transactions
+            if (controller.filteredTransactions.isNotEmpty) {
+              final txn = controller.filteredTransactions[index];
+              return HistoryListTileWidget(txn: txn);
+            }
+
+            final txn = controller.filteredTransactions[index];
+            return HistoryListTileWidget(txn: txn);
+          },
+        ),
+      );
+    });
   }
 }
