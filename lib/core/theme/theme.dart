@@ -11,7 +11,7 @@ class MaverickAppTheme {
 
   static ThemeData lightTheme = ThemeData.light(useMaterial3: true).copyWith(
     colorScheme: MaverickAppColorScheme.colorSchemeLight,
-    dividerColor: Colors.white,
+    dividerColor: kSecondaryColor,
     elevatedButtonTheme: MaverickAppElevatedButtonTheme.elevatedButtonLightTheme,
     inputDecorationTheme: MaverickAppInputDecorationTheme.inputDecorationLightTheme,
     // progressIndicatorTheme: PretiumAppProgressIndicatorTheme.progressIndicatorLightTheme,
