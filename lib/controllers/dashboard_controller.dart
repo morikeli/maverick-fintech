@@ -20,8 +20,27 @@ class DashboardController extends GetxController {
   Future<void> fetchDashboardData() async {
     isLoading.value = true;
     try {
-      walletBalance.value = await _transactionService.getWalletBalance();
-    } finally {
+      final user = FirebaseAuth.instance.currentUser!;
+      final uid = user.uid;
+
+      // Get user profile (first + last name) from Firestore
+      final doc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
+          .get();
+
+      if (doc.exists) {
+        final data = doc.data()!;
+        final firstName = data['firstName'] ?? '';
+        final lastName = data['lastName'] ?? '';
+        userName.value = "$firstName $lastName".trim();
+      }
+
+      // Get wallet balance
+      walletBalance.value = await _transactionService.getWalletBalance(uid: uid);
+    } catch(e) {
+      errorMessage.value = e.toString();
+    }finally {
       isLoading.value = false;
     }
   }
