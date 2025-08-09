@@ -36,11 +36,17 @@ class FormValidation {
   static String? validatePhoneNumber(String? value) {
     if (value == null || value.isEmpty) {
       return kPhoneNumberNullError;
-    } else if (value.length < 10) {
-      return kShortPhoneNumberError;
-    } else if (value.length > 15) {
-      return kLongPhoneNumberError;
     }
+
+    // Remove spaces and hyphens for validation
+    String cleaned = value.replaceAll(RegExp(r'\s+|-'), '');
+
+    // Allow optional "+" at start, then digits only
+    final phoneRegex = RegExp(r'^\+?[0-9]{10,15}$');
+    if (!phoneRegex.hasMatch(cleaned) || value.length < 10 || value.length > 15) {
+      return "Please enter a valid phone number";
+    }
+
     return null;
   }
 
