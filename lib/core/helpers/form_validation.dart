@@ -44,6 +44,23 @@ class FormValidation {
     return null;
   }
 
+  static String? validateEmailAndPhoneNumber(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Please enter an email or phone number';
+    }
+
+    final text = value.trim();
+
+    final isPhoneValid = validatePhoneNumber(text) == null;
+    final isEmailValid = validateEmail(text) == null;
+
+    if (!isPhoneValid && !isEmailValid) {
+      return 'Enter a valid email or phone number';
+    }
+
+    return null;
+  }
+
   static String? validatePassword(String? value, String? pwdController) {
     if (value == null || value.isEmpty) {
       return kPasswordNullError;
