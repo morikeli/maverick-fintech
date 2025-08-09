@@ -129,7 +129,7 @@ class _SignupFormState extends State<SignupForm> {
     return CustomTextFormField(
       controller: _confirmPasswordController,
       label: "Confirm Password",
-      icon: Icons.lock_outline,
+      icon: BootstrapIcons.lock,
       obscureText: true,
       validator: (value) {
         return FormValidation.validatePassword(value, _passwordController.text);
@@ -141,7 +141,7 @@ class _SignupFormState extends State<SignupForm> {
     return CustomTextFormField(
       controller: _passwordController,
       label: "Password",
-      icon: Icons.lock_outline,
+      icon: BootstrapIcons.lock,
       obscureText: true,
       validator: (value) {
         return FormValidation.validatePassword(value, _passwordController.text);
@@ -153,7 +153,7 @@ class _SignupFormState extends State<SignupForm> {
     return CustomTextFormField(
       controller: _emailController,
       label: "Email",
-      icon: Icons.email_outlined,
+      icon: BootstrapIcons.envelope,
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
         return FormValidation.validateEmail(value);
@@ -165,7 +165,7 @@ class _SignupFormState extends State<SignupForm> {
     return CustomTextFormField(
       controller: _mobileNumberController,
       label: "Mobile Number",
-      icon: BootstrapIcons.phone_flip,
+      icon: BootstrapIcons.phone,
       keyboardType: TextInputType.number,
       validator: (value) {
         FormValidation.validateFirstName(value);
@@ -178,7 +178,7 @@ class _SignupFormState extends State<SignupForm> {
     return CustomTextFormField(
       controller: _lastNameController,
       label: "Last Name",
-      icon: Icons.person_outline,
+      icon: BootstrapIcons.person,
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
         return FormValidation.validateLastName(value);
@@ -190,7 +190,7 @@ class _SignupFormState extends State<SignupForm> {
     return CustomTextFormField(
       controller: _firstNameController,
       label: "First Name",
-      icon: Icons.person_outline,
+      icon: BootstrapIcons.person,
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
         FormValidation.validateFirstName(value);
