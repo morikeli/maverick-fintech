@@ -22,7 +22,7 @@ class CurrencyHelper {
   static String formatTransactionAmount({
     required double amount,
     String? currency,
-    required bool isSent,
+    required bool isSent, // did the current user send the money
     bool abbreviated = false,
   }) {
     final formattedAmount = abbreviated
