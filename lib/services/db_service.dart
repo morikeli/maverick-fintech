@@ -30,9 +30,10 @@ class DBService {
     await db.execute('''
       CREATE TABLE user (
         uid INTEGER PRIMARY KEY,
-        name TEXT,
+        firstName TEXT,
+        lastName TEXT,
         email TEXT,
-        phone TEXT
+        mobileNumber TEXT
       )
     ''');
   }
