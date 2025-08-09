@@ -20,10 +20,10 @@ class ProfileController extends GetxController {
   }
 
   Future<void> loadUser(String uid) async {
-    final data = await LocalDB.getUserInfo(uid);
-    if (data != null) {
-      user.value = UserModel.fromMap(data);
-    }
+    // final data = await LocalDB.getUserInfo(uid);
+    // if (data != null) {
+    //   user.value = UserModel.fromMap(data);
+    // }
 
     isLoading.value = true;
 
@@ -58,14 +58,14 @@ class ProfileController extends GetxController {
     isLoading.value = true;
     try {
       // update user info in local storage
-      await LocalDB.saveUserInfo(uid, firstName, lastName, email, mobileNumber);
-      user.value = UserModel(
-        uid: uid,
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        mobileNumber: mobileNumber,
-      );
+      // await LocalDB.saveUserInfo(uid, firstName, lastName, email, mobileNumber);
+      // user.value = UserModel(
+      //   uid: uid,
+      //   firstName: firstName,
+      //   lastName: lastName,
+      //   email: email,
+      //   mobileNumber: mobileNumber,
+      // );
 
       // Update Firestore user document
       await FirebaseFirestore.instance.collection('users').doc(uid).update({
