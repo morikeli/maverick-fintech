@@ -17,11 +17,19 @@ class LocalDB {
       version: 1,
       onCreate: (db, _) async {
         await db.execute(
-          'CREATE TABLE pin(id INTEGER PRIMARY KEY, value TEXT)',
+          'CREATE TABLE pin(uid INTEGER PRIMARY KEY, value TEXT)',
         );
         await db.execute(
-          'CREATE TABLE user_info(id TEXT PRIMARY KEY, name TEXT, email TEXT)',
+          'CREATE TABLE user_info(uid TEXT PRIMARY KEY, firstName TEXT, lastName TEXT, email TEXT, mobileNumber TEXT)',
         );
+      },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          // Add missing columns if upgrading from version 1
+          await db.execute("ALTER TABLE user_info ADD COLUMN firstName TEXT");
+          await db.execute("ALTER TABLE user_info ADD COLUMN lastName TEXT");
+          await db.execute("ALTER TABLE user_info ADD COLUMN mobileNumber TEXT");
+        }
       },
     );
   }
