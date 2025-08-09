@@ -5,7 +5,6 @@ import '../services/transaction_service.dart';
 
 class HistoryController extends GetxController {
   final TransactionService _transactionService = TransactionService();
-  
   RxList<TransactionModel> allTransactions = <TransactionModel>[].obs;
   RxList<TransactionModel> filteredTransactions = <TransactionModel>[].obs;
 
