@@ -5,7 +5,8 @@ class TransactionModel {
   final String currency;
   final String counterparty;
   final DateTime date;
-  final String? senderID;
+  String? senderID;
+  String? receiverID;
 
   TransactionModel({
     required this.id,
@@ -15,12 +16,14 @@ class TransactionModel {
     required this.counterparty,
     required this.date,
     this.senderID = '',
+    this.receiverID = '',
   });
 
   factory TransactionModel.fromMap(Map<String, dynamic> map) {
     return TransactionModel(
       id: map['id'],
       senderID: map['senderID'],
+      receiverID: map['receiverID'],
       type: map['type'],
       amount: map['amount'],
       currency: map['currency'],
@@ -32,6 +35,7 @@ class TransactionModel {
   Map<String, dynamic> toMap() => {
     'id': id,
     'senderID': senderID,
+    'receiverID': receiverID,
     'type': type,
     'amount': amount,
     'currency': currency,
