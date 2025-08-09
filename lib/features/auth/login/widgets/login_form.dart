@@ -21,23 +21,21 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return Form(
-        key: formKey,
-        child: Column(
-          children: [
-            emailTextField(),
-            const SizedBox(height: 20),
-            passwordTextField(),
-            const SizedBox(height: 12.0),
-            // "Remember Me" checkbox and "Forgot password" text
-            checkBoxandForgotPassword(context),
-            const SizedBox(height: 20.0),
-            loginButton(context),
-          ],
-        ),
-      );
-    });
+    return Form(
+      key: formKey,
+      child: Column(
+        children: [
+          emailTextField(),
+          const SizedBox(height: 20),
+          passwordTextField(),
+          const SizedBox(height: 12.0),
+          // "Remember Me" checkbox and "Forgot password" text
+          checkBoxandForgotPassword(context),
+          const SizedBox(height: 20.0),
+          loginButton(context),
+        ],
+      ),
+    );
   }
 
   SizedBox loginButton(BuildContext context) {
