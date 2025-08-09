@@ -20,20 +20,23 @@ class HistoryScreenBodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return Column(
-        children: [
-          // 1. Filter
-          FilterTransactionsWidget(
-            controller: controller,
-            dateFormatter: dateFormatter,
-          ),
-          Divider(),
-          // 2. Section for displaying total sent, and received
-          basicAnalytics(context),
-          Divider(),
-          // 3. All transaction made
-          TransactionHistoryWidget(controller: controller),
-        ],
+      return SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            // 1. Filter
+            FilterTransactionsWidget(
+              controller: controller,
+              dateFormatter: dateFormatter,
+            ),
+            Divider(),
+            // 2. Section for displaying total sent, and received
+            basicAnalytics(context),
+            Divider(),
+            // 3. All transaction made
+            TransactionHistoryWidget(controller: controller),
+          ],
+        ),
       );
     });
   }
