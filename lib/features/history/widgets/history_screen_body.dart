@@ -49,10 +49,10 @@ class HistoryScreenBodyWidget extends StatelessWidget {
         children: [
           Column(
             children: [
-              Text("Total Sent"),
+              Text("Total Received"),
               Text(
                 CurrencyHelper.formatTransactionAmount(
-                  amount: controller.totalSent.value,
+                  amount: controller.totalReceived.value,
                   currency: 'Kshs',
                   isSent: true,
                   abbreviated: false, // apply formatting & abbreviation
@@ -62,10 +62,10 @@ class HistoryScreenBodyWidget extends StatelessWidget {
           ),
           Column(
             children: [
-              Text("Total Received"),
+              Text("Total Sent"),
               Text(
                 CurrencyHelper.formatTransactionAmount(
-                  amount: controller.totalReceived.value,
+                  amount: controller.totalSent.value,
                   currency: 'Kshs',
                   isSent: false,
                   abbreviated: false, // apply formatting & abbreviation

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -6,9 +7,10 @@ import '../../../core/theme/colors.dart';
 import '../../../models/transaction_model.dart';
 
 class HistoryListTileWidget extends StatelessWidget {
-  const HistoryListTileWidget({super.key, required this.txn});
+  const HistoryListTileWidget({super.key, required this.txn, required this.currentUser});
 
   final TransactionModel txn;
+  final User? currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +41,13 @@ class HistoryListTileWidget extends StatelessWidget {
       CurrencyHelper.formatTransactionAmount(
         amount: txn.amount,
         currency: txn.currency,
-        isSent: txn.type == "send",
+        isSent: txn.counterparty == currentUser?.email,
         abbreviated: true, // apply formatting & abbreviation
       ),
       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-        color: txn.type == "send"
-            ? kSentTransactionColor
-            : kRecievedTransactionColor,
+        color: txn.counterparty == currentUser?.email
+            ? kReceivedTransactionColor
+            : kSentTransactionColor,
       ),
       overflow: TextOverflow.visible,
     );
@@ -53,9 +55,11 @@ class HistoryListTileWidget extends StatelessWidget {
 
   Text subtitleText(BuildContext context) {
     return Text(
-      txn.type == "send"
-          ? "Sent"
-          : "Received", // show "Sent" for sent transactions and "Received" for received transactions
+      // show "Sent" for sent transactions and "Received" for received transactions
+      // check if the current user is the counterparty (the one who received the cash)
+      txn.counterparty == currentUser?.email
+          ? "Received"
+          : "Sent",
       style: Theme.of(context).textTheme.labelSmall,
     );
   }
@@ -64,10 +68,12 @@ class HistoryListTileWidget extends StatelessWidget {
 
   Icon leadingIcon() {
     return Icon(
-      txn.type == 'send' ? Icons.upload : Icons.download,
-      color: txn.type == 'send'
-          ? kSentTransactionColor
-          : kRecievedTransactionColor,
+      // show upload icon for sent transactions
+      // otherwise show upload icon
+      txn.counterparty == currentUser?.email ? Icons.download : Icons.upload,
+      color: txn.counterparty == currentUser?.email
+          ? kReceivedTransactionColor
+          : kSentTransactionColor
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:bootstrap_icons/bootstrap_icons.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,7 @@ class TransactionHistoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       final transactions = controller;
+      final user = FirebaseAuth.instance.currentUser;
 
       if (transactions.allTransactions.isEmpty || transactions.filteredTransactions.isEmpty) {
         return Center(
@@ -39,11 +41,11 @@ class TransactionHistoryWidget extends StatelessWidget {
           // if filters are applied show filtered transactions
           if (transactions.filteredTransactions.isNotEmpty) {
             final txn = transactions.filteredTransactions[index];
-            return HistoryListTileWidget(txn: txn);
+            return HistoryListTileWidget(txn: txn, currentUser: user);
           }
 
           final txn = transactions.allTransactions[index];
-          return HistoryListTileWidget(txn: txn);
+          return HistoryListTileWidget(txn: txn, currentUser: user);
         },
       );
     });
