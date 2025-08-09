@@ -31,33 +31,77 @@ class TransactionService {
     if (user == null) throw Exception("User not logged in");
     final uid = user.uid;
 
-    // reference the document where user's wallet balance is stored
-    final walletRef = FirebaseFirestore.instance
+    // Step 1: Find recipient account
+    final recipientQuery = await FirebaseFirestore.instance
         .collection('users')
-        .doc(user.uid)
+        .where('email', isEqualTo: txn.counterparty) // If counterparty is email
+        .get();
+
+    // If not found by email, try phone number
+    if (recipientQuery.docs.isEmpty) {
+      final phoneQuery = await FirebaseFirestore.instance
+          .collection('users')
+          .where('phoneNumber', isEqualTo: txn.counterparty)
+          .get();
+
+      if (phoneQuery.docs.isEmpty) {
+        throw Exception("Recipient account not found");
+      }
+
+      txn.receiverID = phoneQuery.docs.first.id;
+    } else {
+      txn.receiverID = recipientQuery.docs.first.id;
+    }
+
+    // Step 2: Prevent sending money to yourself
+    if (txn.receiverID == uid) {
+      throw Exception("You cannot send money to yourself");
+    }
+
+    // Step 3: References for sender and recipient balances
+    final senderWalletRef = FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
         .collection('wallet')
         .doc('balance');
 
-    // create a refence for a new transaction document
+    final recipientWalletRef = FirebaseFirestore.instance
+        .collection('users')
+        .doc(txn.receiverID)
+        .collection('wallet')
+        .doc('balance');
+
+    // Step 4: Create transaction doc ref
     final transactionRef = FirebaseFirestore.instance
         .collection('transactions')
         .doc();
 
+    // Step 5: Run transaction
     await FirebaseFirestore.instance.runTransaction((transaction) async {
-      double currentBalance = await getWalletBalance(uid: uid, transaction: transaction);
+      // 1. Read sender's balance first
+      final senderSnapshot = await transaction.get(senderWalletRef);
+      final senderBalance = (senderSnapshot.data()?['amount'] ?? 0) as double;
 
-      if (currentBalance < txn.amount) {
+      if (senderBalance < txn.amount) {
         throw Exception("Insufficient balance");
       }
 
-      // Deduct and update wallet
-      double newBalance = currentBalance - txn.amount;
-      transaction.update(walletRef, {'amount': newBalance});
+      // 2. Read recipient's balance second
+      final recipientSnapshot = await transaction.get(recipientWalletRef);
+      final recipientBalance = (recipientSnapshot.data()?['amount'] ?? 0) as double;
+
+      // 3. Perform writes after all reads
+      final newSenderBalance = senderBalance - txn.amount;
+      transaction.update(senderWalletRef, {'amount': newSenderBalance});
+
+      final newRecipientBalance = recipientBalance + txn.amount;
+      transaction.update(recipientWalletRef, {'amount': newRecipientBalance});
 
       // Save transaction
       transaction.set(transactionRef, {
         'id': txn.id,
-        'senderID': user.uid,
+        'senderID': uid,
+        'receiverID': txn.counterparty,
         'type': txn.type,
         'amount': txn.amount,
         'currency': txn.currency,
