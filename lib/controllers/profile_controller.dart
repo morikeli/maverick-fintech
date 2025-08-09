@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import '../core/helpers/local_storage.dart';
 import '../models/user_model.dart';
 
@@ -41,6 +45,45 @@ class ProfileController extends GetxController {
         userName.value = "$firstName $lastName".trim();
         user.value = UserModel.fromMap(data);
       }
+    } catch (e) {
+      errorMessage.value = e.toString();
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+
+  Future<void> uploadProfilePicture(String uid) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile == null) return; // User cancelled
+
+    isLoading.value = true;
+
+    try {
+      File file = File(pickedFile.path);
+
+      // Upload to Firebase Storage
+      final ref = FirebaseStorage.instance
+          .ref()
+          .child('profile_pictures')
+          .child('$uid.jpg');
+
+      await ref.putFile(file);
+
+      // Get the download URL
+      final imageUrl = await ref.getDownloadURL();
+
+      // Save to Firestore
+      await FirebaseFirestore.instance.collection('users').doc(uid).update({
+        'profilePicture': imageUrl,
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+
+      // Update in-memory user model
+      user.value = user.value?.copyWith(profilePicture: imageUrl);
+
     } catch (e) {
       errorMessage.value = e.toString();
     } finally {
