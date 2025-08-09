@@ -25,9 +25,11 @@ class RecentTransactionsWidget extends StatelessWidget {
 
       if (transactions.isEmpty) {
         return Center(
-          child: ListView(
+          child: Column(
             children: [
+              SizedBox(height: MediaQuery.of(context).size.height * .2),
               Icon(BootstrapIcons.receipt_cutoff, size: 30.0),
+              const SizedBox(height: 8.0),
               Text(
                 'No transaction records found',
                 style: Theme.of(context).textTheme.bodyMedium,
