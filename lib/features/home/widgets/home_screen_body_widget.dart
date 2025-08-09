@@ -12,7 +12,6 @@ class HomeScreenBodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      
       children: [
         // 1. Header widget with wallet balance, currency type dropdown, avatar and greetings
         HeaderWidget(controller: controller),
