@@ -6,6 +6,26 @@ import 'package:pdf/widgets.dart' as pw;
 import '../models/transaction_model.dart';
 
 class TransactionService {
+  Future<String> getRecipientUid(String emailOrPhone) async {
+    final userQuery = await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: emailOrPhone)
+        .get();
+
+    if (userQuery.docs.isEmpty) {
+      final phoneQuery = await FirebaseFirestore.instance
+          .collection('users')
+          .where('phoneNumber', isEqualTo: emailOrPhone)
+          .get();
+
+      if (phoneQuery.docs.isEmpty) {
+        throw Exception("Recipient account not found");
+      }
+      return phoneQuery.docs.first.id;
+    }
+    return userQuery.docs.first.id;
+  }
+
   Future<void> sendMoney(TransactionModel txn) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) throw Exception("User not logged in");
