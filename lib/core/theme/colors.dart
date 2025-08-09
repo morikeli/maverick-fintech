@@ -21,5 +21,5 @@ const Color kSuccessColor = Color(0xFF05332B);
 const Color kWarningColor = Color(0xFFD8D507);
 const Color kInfoColor = Color(0xFF3593E0);
 const kNotificationBadgeColor = Color(0xFFE41304);
-const kRecievedTransactionColor = Color(0xFF0DE718);
+const kReceivedTransactionColor = Color(0xFF0DE718);
 const kSentTransactionColor = Color(0xFFF03629);
