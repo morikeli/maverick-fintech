@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import '../models/transaction_model.dart';
 import '../services/transaction_service.dart';
@@ -57,12 +58,22 @@ class HistoryController extends GetxController {
   }
 
   void calculateAnalytics() {
+    final user = FirebaseAuth.instance.currentUser;
+    final userUid = user?.uid;
+    final userEmail = user?.email;
+    if (user == null) return;
+
     double sent = 0;
     double received = 0;
+
     for (var txn in allTransactions) {
-      if (txn.type == 'send') {
+      // if the current user is the sender, return total sent amount
+      if (txn.senderID == userUid) {
         sent += txn.amount;
-      } else if (txn.type == 'receive') {
+      }
+
+      // if the current user is the receiver (counterparty), return total received amount
+      if (txn.counterparty == userEmail) {
         received += txn.amount;
       }
     }
