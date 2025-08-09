@@ -11,7 +11,6 @@ class SignupScreenBody extends StatelessWidget {
 
   final AuthController _authController = Get.put(AuthController());
 
-
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -19,29 +18,28 @@ class SignupScreenBody extends StatelessWidget {
         return Center(child: LoadingWidget.newtonCradleMedium());
       }
 
-        return SafeArea(
-          child: SizedBox(
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: ListView(
-                children: [
-                  signupScreenTitle(context),
-                  const SizedBox(height: 8.0),
-                  signupScreenSubTitle(context),
-                  SizedBox(height: 16.0),
-                  SignupForm(authController: _authController),
-                  SizedBox(height: 24.0),
+      return SafeArea(
+        child: SizedBox(
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: ListView(
+              children: [
+                signupScreenTitle(context),
+                const SizedBox(height: 8.0),
+                signupScreenSubTitle(context),
+                SizedBox(height: 16.0),
+                SignupForm(authController: _authController),
+                SizedBox(height: 24.0),
 
-                  // if user has an account, redirect them to login screen when they tap the "Login" text
-                  loginScreenRedirectLink(context),
-                ],
-              ),
+                // if user has an account, redirect them to login screen when they tap the "Login" text
+                loginScreenRedirectLink(context),
+              ],
             ),
           ),
-        );
-      }
-    );
+        ),
+      );
+    });
   }
 
   Text loginScreenRedirectLink(BuildContext context) {
