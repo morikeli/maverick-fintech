@@ -19,6 +19,8 @@ class TransactionController extends GetxController {
         currency: currency,
         counterparty: to,
         date: DateTime.now(),
+        senderID: FirebaseAuth.instance.currentUser!.uid,
+        receiverID: recipientUID,
       );
       await _transactionService.sendMoney(txn);
 
