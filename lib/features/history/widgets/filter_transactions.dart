@@ -31,7 +31,7 @@ class FilterTransactionsWidget extends StatelessWidget {
                 children: [
                    // transaction type: "sent", "received", default: "All"
                   transactionTypeDropdownButton(context),
-                  Spacer(),
+                  SizedBox(width: 4.0),
                   //pick start date to filter transactions
                   pickStartDate(context),
                   // pick end date to filter transactions
