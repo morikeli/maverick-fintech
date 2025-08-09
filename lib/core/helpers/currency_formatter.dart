@@ -30,7 +30,7 @@ class CurrencyHelper {
         : formatWithCommas(amount);
 
     // Prefix with '-' for sent transactions, '+' for received
-    final prefix = isSent ? '-' : '+';
+    final prefix = isSent ? '+' : '-';
     return '$prefix$currency $formattedAmount';
   }
 }
