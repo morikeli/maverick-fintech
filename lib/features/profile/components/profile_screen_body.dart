@@ -43,7 +43,7 @@ class ProfileScreenBody extends StatelessWidget {
           SizedBox(height: 8.0),
           userNameAndLocation(context, userName),
           SizedBox(height: 8.0),
-          editProfileAndResetPINBtns(),
+          resetPINBtn(),
           SizedBox(height: 8.0),
           CustomListTileWidget(
             leadingIcon: BootstrapIcons.person_add,
@@ -134,17 +134,11 @@ class ProfileScreenBody extends StatelessWidget {
     });
   }
 
-  Row editProfileAndResetPINBtns() {
+  Row resetPINBtn() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        // 1. Edit profile btn
-        Expanded(
-          child: ElevatedButton(onPressed: () {}, child: Text('Edit profile')),
-        ),
-        SizedBox(width: 12.0),
-
-        // 2. Reset PIN btn
+        // Reset PIN btn
         Expanded(
           child: ElevatedButton(onPressed: () {}, child: Text('Reset PIN')),
         ),
