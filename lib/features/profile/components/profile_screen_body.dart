@@ -123,7 +123,10 @@ class ProfileScreenBody extends StatelessWidget {
           // 9. Logout button
           ElevatedButton(
             onPressed: () async => confirmLogout(),
-            style: ElevatedButton.styleFrom(backgroundColor: kDangerColor, padding: EdgeInsets.symmetric(horizontal: 12.0)),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: kDangerColor,
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Icon(BootstrapIcons.door_open), Text('Logout')],
@@ -150,8 +153,19 @@ class ProfileScreenBody extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          Text('Test user', style: Theme.of(context).textTheme.bodyLarge),
-          Text('Nairobi, Kenya', style: Theme.of(context).textTheme.bodyLarge),
+          Text(
+            userName,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(fontSize: 28.0),
+          ),
+          Text(
+            'Nairobi, Kenya',
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: kTextSecondaryColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );
