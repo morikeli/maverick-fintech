@@ -12,6 +12,9 @@ class TransactionController extends GetxController {
   Future<void> sendMoney(String to, double amount, String currency) async {
     isLoading.value = true;
     try {
+      // Get recipient UID before creating transaction model
+      final recipientUID = await _transactionService.getRecipientUid(to);
+
       final txn = TransactionModel(
         id: const Uuid().v4(),
         type: 'send',
