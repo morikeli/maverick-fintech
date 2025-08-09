@@ -69,7 +69,7 @@ class _SignupFormState extends State<SignupForm> {
               );
             }
 
-            // authorize user
+            // create user account
             await widget.authController.signup(
               _firstNameController.text.trim(),
               _lastNameController.text.trim(),
