@@ -79,14 +79,14 @@ class _LoginFormState extends State<LoginForm> {
   Row checkBoxandForgotPassword(BuildContext context) {
     return Row(
       children: [
-        Checkbox.adaptive(
-          value: widget.authController.rememberMe.value,
-          activeColor: Colors.teal.shade900,
-          onChanged: (value) {
-            widget.authController.rememberMe.value = value ?? false;
-          },
-        ),
-        const Text('Remember me'),
+        // Checkbox.adaptive(
+        //   value: widget.authController.rememberMe.value,
+        //   activeColor: Colors.teal.shade900,
+        //   onChanged: (value) {
+        //     widget.authController.rememberMe.value = value ?? false;
+        //   },
+        // ),
+        // const Text('Remember me'),
         const Spacer(),
         GestureDetector(
           onTap: () => Navigator.pushNamed(context, '/forgot-password'),
