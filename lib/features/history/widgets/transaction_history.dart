@@ -12,20 +12,38 @@ class TransactionHistoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return Expanded(
-        child: ListView.builder(
-          itemCount: controller.filteredTransactions.length,
-          itemBuilder: (context, index) {
-            // if filters are applied show filtered transactions
-            if (controller.filteredTransactions.isNotEmpty) {
-              final txn = controller.filteredTransactions[index];
-              return HistoryListTileWidget(txn: txn);
-            }
+      final transactions = controller;
 
-            final txn = controller.filteredTransactions[index];
+      if (transactions.allTransactions.isEmpty || transactions.filteredTransactions.isEmpty) {
+        return Center(
+          child: Column(
+            children: [
+              SizedBox(height: MediaQuery.of(context).size.height * .16),
+              Icon(BootstrapIcons.receipt_cutoff, size: 30.0),
+              const SizedBox(height: 8.0),
+              Text(
+                'No transaction records found',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ],
+          ),
+        );
+      }
+
+      return ListView.builder(
+        shrinkWrap: true, // Let it size itself based on items
+        physics: const NeverScrollableScrollPhysics(), // prevent nested scroll conflict
+        itemCount: transactions.filteredTransactions.length,
+        itemBuilder: (context, index) {
+          // if filters are applied show filtered transactions
+          if (transactions.filteredTransactions.isNotEmpty) {
+            final txn = transactions.filteredTransactions[index];
             return HistoryListTileWidget(txn: txn);
-          },
-        ),
+          }
+
+          final txn = transactions.allTransactions[index];
+          return HistoryListTileWidget(txn: txn);
+        },
       );
     });
   }
