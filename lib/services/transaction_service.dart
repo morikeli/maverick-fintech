@@ -204,31 +204,50 @@ class TransactionService {
 
     if (user == null) return const Stream.empty();
 
-    return FirebaseFirestore.instance
+    final sentStream = FirebaseFirestore.instance
         .collection('transactions')
         .where('senderID', isEqualTo: user.uid)
-        .orderBy('date', descending: true)
-        .snapshots()
-        .map((snapshot) {
-          return snapshot.docs.map((doc) {
-            final data = doc.data();
+        .snapshots();
 
-            final timestamp = data['date'];
-            DateTime date = DateTime.now();
-            if (timestamp is Timestamp) {
-              date = timestamp.toDate();
-            }
+    final receivedStream = FirebaseFirestore.instance
+        .collection('transactions')
+        .where('receiverID', isEqualTo: user.email)
+        .snapshots();
 
-            return TransactionModel(
-              id: data['id'],
-              senderID: data['senderID'],
-              type: data['type'],
-              amount: (data['amount'] as num).toDouble(),
-              currency: data['currency'],
-              counterparty: data['counterparty'],
-              date: date,
-            );
-          }).toList();
-        });
+    return Rx.combineLatest2<
+      QuerySnapshot<Map<String, dynamic>>,
+      QuerySnapshot<Map<String, dynamic>>,
+      List<TransactionModel>
+    >(sentStream, receivedStream, (sentSnap, receivedSnap) {
+      final allDocs = [...sentSnap.docs, ...receivedSnap.docs];
+
+      // Sort by date descending
+      allDocs.sort((a, b) {
+        final aDate = (a['date'] as Timestamp?)?.toDate() ?? DateTime(1970);
+        final bDate = (b['date'] as Timestamp?)?.toDate() ?? DateTime(1970);
+        return bDate.compareTo(aDate);
+      });
+
+      return allDocs.map((doc) {
+        final data = doc.data();
+        final timestamp = data['date'];
+        DateTime date = DateTime.now();
+        if (timestamp is Timestamp) {
+          date = timestamp.toDate();
+        }
+
+        print('Data: $data');
+        return TransactionModel(
+          id: data['id'],
+          senderID: data['senderID'],
+          receiverID: data['receiverID'],
+          type: data['type'],
+          amount: (data['amount'] as num).toDouble(),
+          currency: data['currency'],
+          counterparty: data['counterparty'],
+          date: date,
+        );
+      }).toList();
+    });
   }
 }
