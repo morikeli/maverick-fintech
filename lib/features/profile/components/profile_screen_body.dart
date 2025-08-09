@@ -11,6 +11,7 @@ class ProfileScreenBody extends StatelessWidget {
   ProfileScreenBody({super.key});
 
   final AuthController authController = Get.put(AuthController());
+  final ProfileController profileController = Get.put(ProfileController());
 
   void confirmLogout() {
     Get.defaultDialog(
@@ -29,7 +30,8 @@ class ProfileScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      bool isDark = themeController.isDarkMode;
+      bool isDark = profileController.isDarkMode.value;
+      final userName = profileController.userName.value;
 
       return ListView(
         padding: EdgeInsets.all(12.0),
@@ -39,7 +41,7 @@ class ProfileScreenBody extends StatelessWidget {
 
           // 2. username
           SizedBox(height: 8.0),
-          userNameAndLocation(context),
+          userNameAndLocation(context, userName),
           SizedBox(height: 8.0),
           editProfileAndResetPINBtns(),
           SizedBox(height: 8.0),
@@ -102,7 +104,7 @@ class ProfileScreenBody extends StatelessWidget {
               scale: .8,
               child: Switch(
                 value: isDark,
-                onChanged: (value) => themeController.toggleTheme(value),
+                onChanged: (value) => profileController.toggleTheme(),
               ),
             ),
           ),
@@ -150,7 +152,7 @@ class ProfileScreenBody extends StatelessWidget {
     );
   }
 
-  Center userNameAndLocation(BuildContext context) {
+  Center userNameAndLocation(BuildContext context, String userName) {
     return Center(
       child: Column(
         children: [
