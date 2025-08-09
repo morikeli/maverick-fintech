@@ -42,7 +42,7 @@ class HeaderWidget extends StatelessWidget {
     );
   }
 
-  Row screenTitleAndAvatar(BuildContext context) {
+  Row screenTitleAndAvatar(BuildContext context, String username) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -58,7 +58,7 @@ class HeaderWidget extends StatelessWidget {
               ),
             ),
             Text(
-              'Hello, testuser',
+              'Hello, $username',
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                 color: kTextSecondaryColor,
                 fontSize: 16.0,
