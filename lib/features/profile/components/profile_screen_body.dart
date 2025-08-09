@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/auth_controller.dart';
-import '../../../controllers/theme_controller.dart';
+import '../../../controllers/profile_controller.dart';
 import '../../../core/theme/colors.dart';
 import 'custom_list_tile.dart';
 
 class ProfileScreenBody extends StatelessWidget {
-  ProfileScreenBody({super.key, required this.themeController});
+  ProfileScreenBody({super.key});
 
-  final ThemeController themeController;
   final AuthController authController = Get.put(AuthController());
 
   void confirmLogout() {

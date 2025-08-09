@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
-import 'package:maverick_app/controllers/theme_controller.dart';
 import 'package:maverick_app/routes.dart';
 import 'package:toastification/toastification.dart';
 
@@ -21,25 +20,21 @@ void main() async {
 }
 
 class MaverickApp extends StatelessWidget {
-  MaverickApp({super.key});
-  final ThemeController themeController = Get.put(ThemeController());
+  const MaverickApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return ToastificationWrapper(
-        child: GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Maverick',
-          darkTheme: MaverickAppTheme.darkTheme,
-          theme: MaverickAppTheme.lightTheme,
-          themeMode: themeController.themeMode.value,
-          home: AuthGate(),
-          initialRoute: '/onboarding-screen',
-          routes: routes,
-        ),
-      );
-    });
+    return ToastificationWrapper(
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Maverick',
+        darkTheme: MaverickAppTheme.darkTheme,
+        theme: MaverickAppTheme.lightTheme,
+        home: AuthGate(),
+        initialRoute: '/onboarding-screen',
+        routes: routes,
+      ),
+    );
   }
 }
