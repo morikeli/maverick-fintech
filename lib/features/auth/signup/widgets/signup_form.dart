@@ -168,7 +168,7 @@ class _SignupFormState extends State<SignupForm> {
       icon: BootstrapIcons.phone,
       keyboardType: TextInputType.number,
       validator: (value) {
-        FormValidation.validateFirstName(value);
+        FormValidation.validatePhoneNumber(value);
         return null;
       },
     );
