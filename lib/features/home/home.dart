@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/theme/colors.dart';
 import '../../controllers/dashboard_controller.dart';
+import '../../widgets/loading_widget.dart';
 import 'widgets/home_screen_body_widget.dart';
+import 'widgets/send_money_fab.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -12,13 +13,15 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: HomeScreenBodyWidget(controller: controller),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Send money',
-        onPressed: () => Get.toNamed('/send-money'),
-        child: Icon(Icons.upload, color: kIconLightColor),
-      ),
-    );
+    return Obx(() {
+      if (controller.isLoading.value) {
+        return Center(child: LoadingWidget.newtonCradleMedium());
+      }
+      
+      return Scaffold(
+        body: HomeScreenBodyWidget(controller: controller),
+        floatingActionButton: SendMoneyFAB(),
+      );
+    });
   }
 }
