@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import '../models/user_model.dart';
 
 class AuthService {
@@ -58,5 +59,6 @@ class AuthService {
 
   Future<void> logout() async {
     await _auth.signOut();
+    Get.deleteAll();
   }
 }
