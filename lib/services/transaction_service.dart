@@ -29,6 +29,7 @@ class TransactionService {
   Future<void> sendMoney(TransactionModel txn) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) throw Exception("User not logged in");
+
     final uid = user.uid;
 
     // Step 1: Find recipient account
@@ -130,7 +131,10 @@ class TransactionService {
         .doc();
 
     await FirebaseFirestore.instance.runTransaction((transaction) async {
-      double currentBalance = await getWalletBalance(uid: uid, transaction: transaction);
+      double currentBalance = await getWalletBalance(
+        uid: uid,
+        transaction: transaction,
+      );
 
       double newBalance = currentBalance + txn.amount;
       transaction.update(walletRef, {'amount': newBalance});
@@ -193,7 +197,6 @@ class TransactionService {
       return (walletSnap.data()?['amount'] ?? 0.0) as double;
     }
   }
-
 
   // get a stream of recent transactions
   Stream<List<TransactionModel>> getRecentTransactions() {
