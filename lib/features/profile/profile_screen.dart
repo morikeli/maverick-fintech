@@ -15,7 +15,8 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: sharedAppBar(context, 'Profile', false),
-      body: ProfileScreenBody(themeController: themeController),
+      body: ProfileScreenBody(),
+      floatingActionButton: EditProfileFAB(),
     );
   }
 }
