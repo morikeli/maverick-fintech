@@ -136,7 +136,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               // otherwise navigate to homescreen
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const AuthGate()),
+                MaterialPageRoute(builder: (context) => AuthGate()),
               );
             } else {
               _controller.nextPage(

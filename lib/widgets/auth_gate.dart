@@ -1,14 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../controllers/pin_controller.dart';
 import '../features/auth/login/login_screen.dart';
 import '../features/auth/pin/pin_screen.dart';
+import '../features/auth/pin/pin_setup_screen.dart';
 import 'loading_widget.dart';
 
 class AuthGate extends StatelessWidget {
-  const AuthGate({
-    super.key,
-  });
+  final PinController pinController = Get.put(PinController());
+  AuthGate({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +20,28 @@ class AuthGate extends StatelessWidget {
         if (asyncSnapshot.connectionState == ConnectionState.waiting) {
           return LoadingWidget.newtonCradleMedium();
         }
-        // if the user is still logged in, navigate to homescreen
-        if (asyncSnapshot.data != null) {
-          return PINScreen();
+        // if data is null, redirect to the login screen
+        if (asyncSnapshot.data == null) {
+          return LoginScreen();
         }
-        return LoginScreen();
-      }
+
+        return FutureBuilder(
+          future: pinController.checkPinStatus(),
+          builder: (context, pinSnapshot) {
+            if (pinSnapshot.connectionState == ConnectionState.waiting) {
+              return LoadingWidget.newtonCradleMedium();
+            }
+
+            // if user has already set up their PIN, redirect them to PINScreen
+            // to enter their PIN, else let them create their PIN
+            if (pinController.isPinSet.value) {
+              return PINScreen(); // enter PIN
+            } else {
+              return PinSetupScreen(); // set up PIN
+            }
+          },
+        );
+      },
     );
   }
 }
