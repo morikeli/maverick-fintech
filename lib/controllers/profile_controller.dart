@@ -126,8 +126,8 @@ class ProfileController extends GetxController {
     }
   }
 
-  Future<void> updatePin(String pin) async {
-    await LocalDB.updatePin(pin);
+  Future<void> updatePin(String uid, String pin) async {
+    await LocalDB.updatePin(uid, pin);
   }
 
   void toggleTheme() {
