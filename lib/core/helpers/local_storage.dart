@@ -1,5 +1,7 @@
-import 'package:sqflite/sqflite.dart';
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
 import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 
 class LocalDB {
   static Database? _db;
@@ -34,12 +36,21 @@ class LocalDB {
     );
   }
 
-  static Future<void> savePin(String pin) async {
+  /// Hash PIN before storing
+  static String _hashPin(String pin) {
+    final bytes = utf8.encode(pin);
+    final hash = sha512.convert(bytes); // hash password using SHA512
+    return hash.toString();
+  }
+
+  static Future<void> savePin(String uid, String pin) async {
     final dbClient = await db;
-    await dbClient.insert('pin', {
-      'id': 1,
-      'value': pin,
-    }, conflictAlgorithm: ConflictAlgorithm.replace);
+    final hashedPin = _hashPin(pin);
+    await dbClient.insert(
+      'pin',
+      {'uid': uid, 'value': hashedPin}, // use 'uid' instead of 'id'
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   static Future<String?> getPin() async {
