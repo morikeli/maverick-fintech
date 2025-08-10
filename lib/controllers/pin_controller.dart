@@ -14,7 +14,7 @@ class PinController extends GetxController {
     super.onInit();
 
     // Listen for account changes
-    FirebaseAuth.instance.authStateChanges().listen((user) {
+    FirebaseAuth.instance.userChanges().listen((user) async {
       uid.value = user?.uid;
       if (uid.value != null) {
         checkPinStatus();
