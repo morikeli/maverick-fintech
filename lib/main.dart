@@ -7,7 +7,6 @@ import 'package:toastification/toastification.dart';
 
 import 'core/helpers/firebase_options.dart';
 import 'core/theme/theme.dart';
-import 'widgets/auth_gate.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +30,6 @@ class MaverickApp extends StatelessWidget {
         title: 'Maverick',
         darkTheme: MaverickAppTheme.darkTheme,
         theme: MaverickAppTheme.lightTheme,
-        home: AuthGate(),
         initialRoute: '/onboarding-screen',
         routes: routes,
       ),
