@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/dashboard_controller.dart';
+import '../../../core/constants/app_strings.dart';
 import '../../../core/theme/colors.dart';
 
 class HeaderWidget extends StatelessWidget {
@@ -72,7 +73,7 @@ class HeaderWidget extends StatelessWidget {
         Center(
           child: CircleAvatar(
             radius: 20,
-            backgroundImage: AssetImage('assets/imgs/5.jpg'),
+            backgroundImage: AssetImage(kMaleProfilePicture),
           ),
         ),
       ],

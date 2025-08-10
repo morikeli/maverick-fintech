@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:bootstrap_icons/bootstrap_icons.dart';
+import '../core/constants/app_strings.dart';
 import '../core/theme/colors.dart';
 
 
@@ -40,7 +41,7 @@ class CustomBottomNavBar extends StatelessWidget {
           leading: Center(
             child: CircleAvatar(
               radius: 14.0,
-              backgroundImage: AssetImage('assets/imgs/5.jpg'),
+              backgroundImage: AssetImage(kMaleProfilePicture),
             ),
           ),
           icon: BootstrapIcons.person_circle,

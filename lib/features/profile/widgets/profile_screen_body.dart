@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../controllers/auth_controller.dart';
 import '../../../controllers/profile_controller.dart';
+import '../../../core/constants/app_strings.dart';
 import '../../../core/theme/colors.dart';
 import '../../auth/pin/reset_pin.dart';
 import 'custom_list_tile.dart';
@@ -187,7 +188,7 @@ class ProfileScreenBody extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: MediaQuery.of(context).size.width * .16,
-            backgroundImage: AssetImage('assets/imgs/5.jpg'),
+            backgroundImage: AssetImage(kMaleProfilePicture),
           ),
           Positioned(
             bottom: 0,

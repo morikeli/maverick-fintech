@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:maverick_app/core/theme/colors.dart';
 
 import '../../../controllers/dashboard_controller.dart';
+import '../../../core/constants/app_strings.dart';
 import '../../../models/transaction_model.dart';
 import '../../../core/helpers/currency_formatter.dart';
 import '../../../widgets/loading_widget.dart';
@@ -58,7 +59,7 @@ class RecentTransactionsWidget extends StatelessWidget {
     return ListTile(
       leading: CircleAvatar(
         radius: 20.0,
-        backgroundImage: AssetImage('assets/imgs/8.jpg'),
+        backgroundImage: AssetImage(kFemaleProfilePicture),
       ),
       title: Text(
         txn.counterparty,
