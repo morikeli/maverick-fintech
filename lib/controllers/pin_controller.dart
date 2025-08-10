@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 import '../core/helpers/local_storage.dart';
+import '../features/auth/pin/pin_screen.dart';
+import '../features/auth/pin/pin_setup_screen.dart';
 
 class PinController extends GetxController {
   final RxnString uid = RxnString();
@@ -17,7 +19,14 @@ class PinController extends GetxController {
     FirebaseAuth.instance.userChanges().listen((user) async {
       uid.value = user?.uid;
       if (uid.value != null) {
-        checkPinStatus();
+        await checkPinStatus();
+        // if user has set up their PIN redirect them to PINScreen
+        // to enter their PIN, else let them create their PIN
+        if (isPinSet.value) {
+          Get.offAll(() => PINScreen());
+        } else {
+          Get.offAll(() => PinSetupScreen());
+        }
       } else {
         isPinSet.value = false;
       }
