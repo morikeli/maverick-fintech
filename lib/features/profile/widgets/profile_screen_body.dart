@@ -13,6 +13,7 @@ class ProfileScreenBody extends StatelessWidget {
   final AuthController authController = Get.put(AuthController());
   final ProfileController profileController = Get.put(ProfileController());
 
+  // dialog that prompts users to confirm if they want to logout
   void confirmLogout() {
     Get.defaultDialog(
       title: 'Logout',
