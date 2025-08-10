@@ -44,7 +44,11 @@ class LocalDB {
 
   static Future<String?> getPin() async {
     final dbClient = await db;
-    final result = await dbClient.query('pin', where: 'id = ?', whereArgs: [1]);
+    final result = await dbClient.query(
+      'pin',
+      where: 'uid = ?',
+      whereArgs: [uid],
+    );
     if (result.isNotEmpty) {
       return result.first['value'] as String;
     }
@@ -77,7 +81,7 @@ class LocalDB {
   ) async {
     final dbClient = await db;
     await dbClient.insert('user_info', {
-      'id': id,
+      'uid': id,
       'firstName': firstName,
       'lastName': lastName,
       'email': email,
@@ -89,7 +93,7 @@ class LocalDB {
     final dbClient = await db;
     final result = await dbClient.query(
       'user_info',
-      where: 'id = ?',
+      where: 'uid = ?',
       whereArgs: [id],
     );
     if (result.isNotEmpty) return result.first;
