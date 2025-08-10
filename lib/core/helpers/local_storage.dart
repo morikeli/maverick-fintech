@@ -27,10 +27,11 @@ class LocalDB {
       },
       onUpgrade: (db, oldVersion, newVersion) async {
         if (oldVersion < 2) {
-          // Add missing columns if upgrading from version 1
           await db.execute("ALTER TABLE user_info ADD COLUMN firstName TEXT");
           await db.execute("ALTER TABLE user_info ADD COLUMN lastName TEXT");
-          await db.execute("ALTER TABLE user_info ADD COLUMN mobileNumber TEXT");
+          await db.execute(
+            "ALTER TABLE user_info ADD COLUMN mobileNumber TEXT",
+          );
         }
       },
     );
