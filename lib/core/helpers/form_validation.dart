@@ -106,4 +106,18 @@ class FormValidation {
     }
     return null;
   }
+
+  static String? validatePIN(String? value, String? pinController) {
+    if (value == null || value.isEmpty) {
+      return 'Enter a valid PIN!';
+    } else if (!RegExp(r'^\d+$').hasMatch(value)) {
+      // check if only digits
+      return 'PIN must contain only numbers!';
+    } else if (value.length < 4) {
+      return 'PIN must be atleast 4 digits!';
+    } else if (value != pinController) {
+      return "PINs didn't match!";
+    }
+    return null;
+  }
 }
