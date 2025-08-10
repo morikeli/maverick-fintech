@@ -56,7 +56,7 @@ class _LoginFormState extends State<LoginForm> {
               form.save();
               emailController.clear();
               passwordController.clear();
-              Get.offAndToNamed('/home');
+              Get.offAndToNamed('/pin-screen');
             } else {
               return AppToastsWidget.dangerToastification(
                 context,
