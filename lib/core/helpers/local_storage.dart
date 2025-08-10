@@ -51,7 +51,30 @@ class LocalDB {
     return null;
   }
 
-  static Future<void> saveUserInfo(String id, String firstName, String lastName, String email, String mobileNumber) async {
+  static Future<bool> verifyPin(String uid, String pin) async {
+    final storedHashedPin = await getPin(uid);
+    if (storedHashedPin == null) return false;
+    return storedHashedPin == _hashPin(pin);
+  }
+
+  static Future<void> updatePin(String uid, String pin) async {
+    final dbClient = await db;
+    final hashedPin = _hashPin(pin);
+    await dbClient.update(
+      'pin',
+      {'value': hashedPin},
+      where: 'uid = ?',
+      whereArgs: [uid],
+    );
+  }
+
+  static Future<void> saveUserInfo(
+    String id,
+    String firstName,
+    String lastName,
+    String email,
+    String mobileNumber,
+  ) async {
     final dbClient = await db;
     await dbClient.insert('user_info', {
       'id': id,
@@ -71,15 +94,5 @@ class LocalDB {
     );
     if (result.isNotEmpty) return result.first;
     return null;
-  }
-
-  static Future<void> updatePin(String pin) async {
-    final dbClient = await db;
-    await dbClient.update(
-      'pin',
-      {'value': pin},
-      where: 'id = ?',
-      whereArgs: [1],
-    );
   }
 }
