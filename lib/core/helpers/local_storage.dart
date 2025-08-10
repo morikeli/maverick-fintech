@@ -60,6 +60,7 @@ class LocalDB {
       'pin',
       where: 'uid = ?',
       whereArgs: [uid],
+      limit: 1,
     );
     if (result.isNotEmpty) {
       return result.first['value'] as String;
