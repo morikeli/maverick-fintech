@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../controllers/auth_controller.dart';
 import '../../../controllers/profile_controller.dart';
 import '../../../core/theme/colors.dart';
+import '../../auth/pin/reset_pin.dart';
 import 'custom_list_tile.dart';
 
 class ProfileScreenBody extends StatelessWidget {
@@ -144,7 +145,14 @@ class ProfileScreenBody extends StatelessWidget {
       children: [
         // Reset PIN btn
         Expanded(
-          child: ElevatedButton(onPressed: () {}, child: Text('Reset PIN')),
+          child: ElevatedButton(
+            onPressed: () => Get.to(
+              () => ResetPinScreen(),
+              transition: Transition.rightToLeftWithFade,
+              duration: Duration(milliseconds: 1700),
+            ),
+            child: Text('Reset PIN'),
+          ),
         ),
       ],
     );
