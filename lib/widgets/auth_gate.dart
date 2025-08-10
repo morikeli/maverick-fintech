@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../features/auth/login/login_screen.dart';
-import 'homescreen.dart';
+import '../features/auth/pin/pin_screen.dart';
 import 'loading_widget.dart';
 
 class AuthGate extends StatelessWidget {
@@ -20,7 +20,7 @@ class AuthGate extends StatelessWidget {
         }
         // if the user is still logged in, navigate to homescreen
         if (asyncSnapshot.data != null) {
-          return HomeScreen();
+          return PINScreen();
         }
         return LoginScreen();
       }
