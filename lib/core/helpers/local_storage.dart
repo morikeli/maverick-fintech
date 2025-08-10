@@ -53,7 +53,7 @@ class LocalDB {
     );
   }
 
-  static Future<String?> getPin() async {
+  static Future<String?> getPin(String uid) async {
     final dbClient = await db;
     final result = await dbClient.query(
       'pin',
