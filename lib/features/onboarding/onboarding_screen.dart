@@ -43,7 +43,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           onPressed: () {
             _controller.jumpToPage(onboardingItems.length - 1);
           },
-          child: Text('Skip', style: Theme.of(context).textTheme.bodySmall),
+          child: Text(
+            'Skip',
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(fontSize: 16.0),
+          ),
         ),
       ),
     );
