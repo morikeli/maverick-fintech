@@ -237,7 +237,6 @@ class TransactionService {
           date = timestamp.toDate();
         }
 
-        print('Data: $data');
         return TransactionModel(
           id: data['id'],
           senderID: data['senderID'],
