@@ -178,7 +178,7 @@ class ProfileScreenBody extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: MediaQuery.of(context).size.width * .16,
-            backgroundImage: AssetImage('assets/imgs/8.jpg'),
+            backgroundImage: AssetImage('assets/imgs/5.jpg'),
           ),
           Positioned(
             bottom: 0,

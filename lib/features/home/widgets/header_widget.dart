@@ -72,7 +72,7 @@ class HeaderWidget extends StatelessWidget {
         Center(
           child: CircleAvatar(
             radius: 20,
-            backgroundImage: AssetImage('assets/imgs/8.jpg'),
+            backgroundImage: AssetImage('assets/imgs/5.jpg'),
           ),
         ),
       ],
