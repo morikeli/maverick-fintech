@@ -80,6 +80,8 @@ class _SendMoneyFormState extends State<SendMoneyForm> {
               recipientController.clear();
               amountController.clear();
 
+              // redirect to previous screen after successful transaction
+              Get.back();
               // display a success toast
               return AppToastsWidget.successToastification(
                 context,
