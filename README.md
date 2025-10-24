@@ -18,7 +18,7 @@
 | | |
 
 ## Overview
-Hello there, I am Mori Keli, a software developer based in Nairobi, Kenya. Maverick is a modern, cross-platform fintech application designed to make money management fast, secure, and effortless. Built with Flutter 💙 and Firebase 🔥, Maverick delivers a smooth, feature-rich experience on both Android and iOS.
+Maverick is a modern, cross-platform fintech application designed to make money management fast, secure, and effortless. Built with Flutter 💙 and Firebase 🔥, Maverick delivers a smooth, feature-rich experience on both Android and iOS.
 
 Whether you’re sending money to friends, tracking your spending, or managing your digital wallet, Maverick keeps everything at your fingertips with an intuitive design and rock-solid security.
 
